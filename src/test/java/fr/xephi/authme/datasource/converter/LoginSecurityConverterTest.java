@@ -12,6 +12,7 @@ import fr.xephi.authme.initialization.DataFolder;
 import fr.xephi.authme.settings.Settings;
 import fr.xephi.authme.settings.properties.ConverterSettings;
 import org.bukkit.command.CommandSender;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -52,10 +53,23 @@ public class LoginSecurityConverterTest {
     @DataFolder
     private File dataFolder = new File("."); // not used but required for injection
 
+    private HikariDataSource testDataSource;
+    private Connection testConnection;
+
     @BeforeInjecting
     public void initMocks() {
         TestHelper.setupLogger();
         given(settings.getProperty(ConverterSettings.LOGINSECURITY_USE_SQLITE)).willReturn(true);
+    }
+
+    @After
+    public void tearDown() throws SQLException {
+        if (testConnection != null && !testConnection.isClosed()) {
+            testConnection.close();
+        }
+        if (testDataSource != null && !testDataSource.isClosed()) {
+            testDataSource.close();
+        }
     }
 
     @Test
@@ -96,11 +110,11 @@ public class LoginSecurityConverterTest {
     @Test
     public void shouldConvertFromMySql() throws IOException, SQLException {
         // given
-        Connection connection = initializeMySqlTable();
+        testConnection = initializeMySqlTable();
         CommandSender sender = mock(CommandSender.class);
 
         // when
-        converter.performConversion(sender, connection);
+        converter.performConversion(sender, testConnection);
 
         // then
         ArgumentCaptor<PlayerAuth> captor = ArgumentCaptor.forClass(PlayerAuth.class);
@@ -131,8 +145,8 @@ public class LoginSecurityConverterTest {
         config.addDataSourceProperty("URL", "jdbc:h2:mem:test");
         config.addDataSourceProperty("user", "sa");
         config.addDataSourceProperty("password", "sa");
-        HikariDataSource ds = new HikariDataSource(config);
-        Connection connection = ds.getConnection();
+        testDataSource = new HikariDataSource(config);
+        Connection connection = testDataSource.getConnection();
 
         try (Statement st = connection.createStatement()) {
             st.execute("DROP TABLE IF EXISTS authme");

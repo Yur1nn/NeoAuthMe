@@ -40,10 +40,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
@@ -190,7 +190,7 @@ public class PlayerListenerTest {
             .check(listener::onPlayerHitPlayerEvent, EntityDamageByEntityEvent.class)
             .check(listener::onPlayerConsumeItem, PlayerItemConsumeEvent.class)
             .check(listener::onPlayerInteract, PlayerInteractEvent.class)
-            .check(listener::onPlayerPickupItem, PlayerPickupItemEvent.class)
+            .check(listener::onPlayerPickupItem, EntityPickupItemEvent.class)
             .check(listener::onPlayerInteractEntity, PlayerInteractEntityEvent.class)
             .check(listener::onPlayerHeldItem, PlayerItemHeldEvent.class);
     }
@@ -545,6 +545,7 @@ public class PlayerListenerTest {
         // given
         Player player = mock(Player.class);
         Location respawnLocation = mock(Location.class);
+        @SuppressWarnings("deprecation")
         PlayerRespawnEvent event = spy(new PlayerRespawnEvent(player, respawnLocation, false));
         given(settings.getProperty(RestrictionSettings.NO_TELEPORT)).willReturn(true);
 
@@ -561,6 +562,7 @@ public class PlayerListenerTest {
         // given
         Player player = mock(Player.class);
         Location respawnLocation = mock(Location.class);
+        @SuppressWarnings("deprecation")
         PlayerRespawnEvent event = spy(new PlayerRespawnEvent(player, respawnLocation, false));
         given(settings.getProperty(RestrictionSettings.NO_TELEPORT)).willReturn(false);
         given(listenerService.shouldCancelEvent(event)).willReturn(false);
@@ -581,6 +583,7 @@ public class PlayerListenerTest {
         Location newLocation = mock(Location.class);
         World world = mock(World.class);
         given(newLocation.getWorld()).willReturn(world);
+        @SuppressWarnings("deprecation")
         PlayerRespawnEvent event = spy(new PlayerRespawnEvent(player, originalLocation, false));
         given(settings.getProperty(RestrictionSettings.NO_TELEPORT)).willReturn(false);
         given(listenerService.shouldCancelEvent(event)).willReturn(true);
@@ -601,6 +604,7 @@ public class PlayerListenerTest {
         Location originalLocation = mock(Location.class);
         Location newLocation = mock(Location.class);
         given(newLocation.getWorld()).willReturn(null);
+        @SuppressWarnings("deprecation")
         PlayerRespawnEvent event = spy(new PlayerRespawnEvent(player, originalLocation, false));
         given(settings.getProperty(RestrictionSettings.NO_TELEPORT)).willReturn(false);
         given(listenerService.shouldCancelEvent(event)).willReturn(true);
@@ -619,6 +623,7 @@ public class PlayerListenerTest {
         // given
         Player player = mock(Player.class);
         Location originalLocation = mock(Location.class);
+        @SuppressWarnings("deprecation")
         PlayerRespawnEvent event = spy(new PlayerRespawnEvent(player, originalLocation, false));
         given(settings.getProperty(RestrictionSettings.NO_TELEPORT)).willReturn(false);
         given(listenerService.shouldCancelEvent(event)).willReturn(true);

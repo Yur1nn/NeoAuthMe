@@ -48,7 +48,7 @@ public class AsyncRegisterTest {
     @Mock
     private DataSource dataSource;
     @Mock
-    private SingletonStore<RegistrationExecutor> registrationExecutorStore;
+    private SingletonStore<RegistrationExecutor<?>> registrationExecutorStore;
 
     @Test
     public void shouldDetectAlreadyLoggedInPlayer() {
@@ -56,7 +56,7 @@ public class AsyncRegisterTest {
         String name = "robert";
         Player player = mockPlayerWithName(name);
         given(playerCache.isAuthenticated(name)).willReturn(true);
-        RegistrationExecutor executor = mock(RegistrationExecutor.class);
+        RegistrationExecutor<?> executor = mock(RegistrationExecutor.class);
         singletonStoreWillReturn(registrationExecutorStore, executor);
 
         // when
@@ -74,7 +74,7 @@ public class AsyncRegisterTest {
         Player player = mockPlayerWithName(name);
         given(playerCache.isAuthenticated(name)).willReturn(false);
         given(commonService.getProperty(RegistrationSettings.IS_ENABLED)).willReturn(false);
-        RegistrationExecutor executor = mock(RegistrationExecutor.class);
+        RegistrationExecutor<?> executor = mock(RegistrationExecutor.class);
         singletonStoreWillReturn(registrationExecutorStore, executor);
 
         // when
@@ -93,7 +93,7 @@ public class AsyncRegisterTest {
         given(playerCache.isAuthenticated(name)).willReturn(false);
         given(commonService.getProperty(RegistrationSettings.IS_ENABLED)).willReturn(true);
         given(dataSource.isAuthAvailable(name)).willReturn(true);
-        RegistrationExecutor executor = mock(RegistrationExecutor.class);
+        RegistrationExecutor<?> executor = mock(RegistrationExecutor.class);
         singletonStoreWillReturn(registrationExecutorStore, executor);
 
         // when
@@ -115,7 +115,7 @@ public class AsyncRegisterTest {
         given(playerCache.isAuthenticated(name)).willReturn(false);
         given(commonService.getProperty(RegistrationSettings.IS_ENABLED)).willReturn(true);
         given(dataSource.isAuthAvailable(name)).willReturn(false);
-        RegistrationExecutor executor = mock(RegistrationExecutor.class);
+        RegistrationExecutor<?> executor = mock(RegistrationExecutor.class);
         TwoFactorRegisterParams params = TwoFactorRegisterParams.of(player);
         singletonStoreWillReturn(registrationExecutorStore, executor);
 
@@ -141,9 +141,10 @@ public class AsyncRegisterTest {
         given(commonService.getProperty(RegistrationSettings.IS_ENABLED)).willReturn(true);
         given(commonService.getProperty(RestrictionSettings.MAX_REGISTRATION_PER_IP)).willReturn(0);
         given(dataSource.isAuthAvailable(name)).willReturn(false);
-        RegistrationExecutor executor = mock(RegistrationExecutor.class);
+        RegistrationExecutor<?> executor = mock(RegistrationExecutor.class);
         TwoFactorRegisterParams params = TwoFactorRegisterParams.of(player);
-        given(executor.isRegistrationAdmitted(params)).willReturn(false);
+        RegistrationExecutor<TwoFactorRegisterParams> typedExecutor = (RegistrationExecutor<TwoFactorRegisterParams>) executor;
+        given(typedExecutor.isRegistrationAdmitted(params)).willReturn(false);
         singletonStoreWillReturn(registrationExecutorStore, executor);
 
         given(bukkitService.createAndCallEvent(any(Function.class)))
@@ -154,7 +155,8 @@ public class AsyncRegisterTest {
 
         // then
         verify(dataSource, only()).isAuthAvailable(name);
-        verify(executor, only()).isRegistrationAdmitted(params);
+        RegistrationExecutor<TwoFactorRegisterParams> verifyExecutor = (RegistrationExecutor<TwoFactorRegisterParams>) executor;
+        verify(verifyExecutor, only()).isRegistrationAdmitted(params);
     }
 
     private static Player mockPlayerWithName(String name) {
@@ -164,8 +166,8 @@ public class AsyncRegisterTest {
     }
 
     @SuppressWarnings("unchecked")
-    private static void singletonStoreWillReturn(SingletonStore<RegistrationExecutor> store,
-                                                 RegistrationExecutor mock) {
+    private static void singletonStoreWillReturn(SingletonStore<RegistrationExecutor<?>> store,
+                                                 RegistrationExecutor<?> mock) {
         given(store.getSingleton(any(Class.class))).willReturn(mock);
     }
 }

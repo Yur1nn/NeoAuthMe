@@ -83,7 +83,9 @@ public class DebugCommandTest {
         command.executeCommand(sender, emptyList());
 
         // then
-        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(any(Class.class));
+        @SuppressWarnings("unchecked")
+        Class<? extends DebugSection> debugSectionClass = any(Class.class);
+        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(debugSectionClass);
         verify(permissionsManager, atLeast(MIN_DEBUG_SECTIONS)).hasPermission(eq(sender), any(DebugSectionPermissions.class));
 
         ArgumentCaptor<String> strCaptor = ArgumentCaptor.forClass(String.class);
@@ -105,7 +107,9 @@ public class DebugCommandTest {
         command.executeCommand(sender, emptyList());
 
         // then
-        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(any(Class.class));
+        @SuppressWarnings("unchecked")
+        Class<? extends DebugSection> debugSectionClass = any(Class.class);
+        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(debugSectionClass);
         verify(permissionsManager, atLeast(MIN_DEBUG_SECTIONS)).hasPermission(eq(sender), any(DebugSectionPermissions.class));
 
         ArgumentCaptor<String> strCaptor = ArgumentCaptor.forClass(String.class);

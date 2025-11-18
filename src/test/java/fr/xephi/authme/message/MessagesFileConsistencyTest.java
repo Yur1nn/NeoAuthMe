@@ -1,8 +1,8 @@
 package fr.xephi.authme.message;
 
 import ch.jalu.configme.resource.PropertyReader;
-import ch.jalu.configme.resource.YamlFileReader;
 import fr.xephi.authme.TestHelper;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 import fr.xephi.authme.util.StringUtils;
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public class MessagesFileConsistencyTest {
     @Test
     public void shouldHaveAllMessages() {
         File file = TestHelper.getJarFile("/" + MESSAGES_FILE);
-        PropertyReader reader = new YamlFileReader(file);
+        PropertyReader reader = YamlFileResourceProvider.loadFromFile(file).createReader();
         List<String> errors = new ArrayList<>();
         for (MessageKey messageKey : MessageKey.values()) {
             validateMessage(messageKey, reader, errors);

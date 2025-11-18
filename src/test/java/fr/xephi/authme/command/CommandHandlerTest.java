@@ -153,7 +153,7 @@ public class CommandHandlerTest {
         String[] bukkitArgs = {"testPlayer"};
         CommandSender sender = mock(CommandSender.class);
         CommandDescription command = mock(CommandDescription.class);
-        given(command.getExecutableCommand()).willReturn((Class) TestUnregisterCommand.class);
+        doReturn(TestUnregisterCommand.class).when(command).getExecutableCommand();
         given(commandMapper.mapPartsToCommand(any(CommandSender.class), anyList())).willReturn(
             new FoundCommandResult(command, asList("unreg"), asList("testPlayer"), 0.0, INCORRECT_ARGUMENTS));
         given(permissionsManager.hasPermission(sender, command.getPermission())).willReturn(true);
@@ -173,7 +173,7 @@ public class CommandHandlerTest {
         String[] bukkitArgs = {"testPlayer"};
         CommandSender sender = mock(CommandSender.class);
         CommandDescription command = mock(CommandDescription.class);
-        given(command.getExecutableCommand()).willReturn((Class) TestUnregisterCommand.class);
+        doReturn(TestUnregisterCommand.class).when(command).getExecutableCommand();
         given(mockedCommands.get(TestUnregisterCommand.class).getArgumentsMismatchMessage())
             .willReturn(MessageKey.USAGE_RECOVER_EMAIL);
         given(commandMapper.mapPartsToCommand(any(CommandSender.class), anyList())).willReturn(

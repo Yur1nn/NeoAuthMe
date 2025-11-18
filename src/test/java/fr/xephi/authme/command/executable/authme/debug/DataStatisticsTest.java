@@ -9,6 +9,7 @@ import fr.xephi.authme.data.limbo.LimboPlayer;
 import fr.xephi.authme.data.limbo.LimboService;
 import fr.xephi.authme.datasource.CacheDataSource;
 import fr.xephi.authme.datasource.DataSource;
+import fr.xephi.authme.ConsoleLogger;
 import fr.xephi.authme.initialization.HasCleanup;
 import fr.xephi.authme.initialization.Reloadable;
 import fr.xephi.authme.initialization.SettingsDependent;
@@ -74,7 +75,7 @@ public class DataStatisticsTest {
         given(playerCache.getLogged()).willReturn(12);
 
         // Clear any loggers that might exist and trigger the generation of two loggers
-        Map loggers = ReflectionTestUtils.getFieldValue(ConsoleLoggerFactory.class, null, "consoleLoggers");
+        Map<String, ConsoleLogger> loggers = ReflectionTestUtils.getFieldValue(ConsoleLoggerFactory.class, null, "consoleLoggers");
         loggers.clear();
         ConsoleLoggerFactory.get(String.class);
         ConsoleLoggerFactory.get(Integer.class);
@@ -99,6 +100,7 @@ public class DataStatisticsTest {
     public void shouldOutputCachedDataSourceStatistics() {
         // given
         CacheDataSource cacheDataSource = mock(CacheDataSource.class);
+        @SuppressWarnings("unchecked")
         LoadingCache<String, Optional<PlayerAuth>> cache = mock(LoadingCache.class);
         given(cache.size()).willReturn(11L);
         given(cacheDataSource.getCachedAuths()).willReturn(cache);

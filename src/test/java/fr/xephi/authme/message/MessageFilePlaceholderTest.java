@@ -1,8 +1,8 @@
 package fr.xephi.authme.message;
 
 import ch.jalu.configme.resource.PropertyReader;
-import ch.jalu.configme.resource.YamlFileReader;
 import com.google.common.collect.ImmutableMultimap;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 import com.google.common.collect.Multimap;
 import fr.xephi.authme.TestHelper;
 import org.junit.Test;
@@ -45,7 +45,7 @@ public class MessageFilePlaceholderTest {
     @Test
     public void shouldHaveAllPlaceholders() {
         // given
-        PropertyReader reader = new YamlFileReader(messagesFile);
+        PropertyReader reader = YamlFileResourceProvider.loadFromFile(messagesFile).createReader();
         List<String> errors = new ArrayList<>(0);
 
         // when

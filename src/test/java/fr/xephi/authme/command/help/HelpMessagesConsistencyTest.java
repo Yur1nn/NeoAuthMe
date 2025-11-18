@@ -1,8 +1,8 @@
 package fr.xephi.authme.command.help;
 
 import ch.jalu.configme.resource.PropertyReader;
-import ch.jalu.configme.resource.YamlFileReader;
 import fr.xephi.authme.TestHelper;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 import fr.xephi.authme.command.CommandDescription;
 import fr.xephi.authme.command.CommandInitializer;
 import fr.xephi.authme.message.MessagePathHelper;
@@ -65,7 +65,7 @@ public class HelpMessagesConsistencyTest {
     @Test
     public void shouldHaveEntryForEachHelpMessageKey() {
         // given
-        PropertyReader reader = new YamlFileReader(DEFAULT_MESSAGES_FILE);
+        PropertyReader reader = YamlFileResourceProvider.loadFromFile(DEFAULT_MESSAGES_FILE).createReader();
 
         // when / then
         for (HelpMessage message : HelpMessage.values()) {

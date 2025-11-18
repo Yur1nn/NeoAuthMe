@@ -178,6 +178,7 @@ public class PermissionsManagerInitializationTest {
     }
 
     private void setUpForVault() {
+        @SuppressWarnings("unchecked")
         RegisteredServiceProvider<Permission> registeredServiceProvider = mock(RegisteredServiceProvider.class);
         given(servicesManager.getRegistration(Permission.class)).willReturn(registeredServiceProvider);
         Permission permission = mock(Permission.class);
