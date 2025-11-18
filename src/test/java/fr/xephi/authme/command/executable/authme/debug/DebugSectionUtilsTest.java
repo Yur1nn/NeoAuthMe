@@ -66,7 +66,6 @@ public class DebugSectionUtilsTest {
         ReflectionTestUtils.setField(LimboService.class, limboService, "entries", limboMap);
 
         // when
-        @SuppressWarnings("unchecked")
         Map<String, LimboPlayer> map = DebugSectionUtils.applyToLimboPlayersMap(limboService, Function.identity());
 
         // then

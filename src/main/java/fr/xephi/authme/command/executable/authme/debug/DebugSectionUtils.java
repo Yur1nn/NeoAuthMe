@@ -1,6 +1,7 @@
 package fr.xephi.authme.command.executable.authme.debug;
 
 import fr.xephi.authme.ConsoleLogger;
+import fr.xephi.authme.data.limbo.LimboPlayer;
 import fr.xephi.authme.data.limbo.LimboService;
 import fr.xephi.authme.datasource.CacheDataSource;
 import fr.xephi.authme.datasource.DataSource;
@@ -91,11 +92,13 @@ final class DebugSectionUtils {
      *
      * @return the value of the function applied to the map, or null upon error
      */
-    static <U> U applyToLimboPlayersMap(LimboService limboService, Function<Map, U> function) {
+    static <U> U applyToLimboPlayersMap(LimboService limboService, Function<Map<String, LimboPlayer>, U> function) {
         Field limboPlayerEntriesField = getLimboPlayerEntriesField();
         if (limboPlayerEntriesField != null) {
             try {
-                return function.apply((Map) limboEntriesField.get(limboService));
+                @SuppressWarnings("unchecked")
+                Map<String, LimboPlayer> map = (Map<String, LimboPlayer>) limboEntriesField.get(limboService);
+                return function.apply(map);
             } catch (Exception e) {
                 logger.logException("Could not retrieve LimboService values:", e);
             }
