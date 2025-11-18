@@ -32,7 +32,7 @@ public class PermissionsExHandler implements PermissionHandler {
 
     @Override
     public boolean addToGroup(OfflinePlayer player, UserGroup group) {
-        if (!PermissionsEx.getPermissionManager().getGroupNames().contains(group)) {
+        if (!PermissionsEx.getPermissionManager().getGroupNames().contains(group.getGroupName())) {
             return false;
         }
 

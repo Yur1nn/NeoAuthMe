@@ -20,7 +20,9 @@ import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -186,7 +188,11 @@ public class LuckPermsHandler implements PermissionHandler {
             })
             .filter(Objects::nonNull)
             .sorted((o1, o2) -> sortGroups(user, o1, o2))
-            .map(g -> new UserGroup(g.getGroup().getName(), g.getContexts().toFlattenedMap()))
+            .map(g -> {
+                Map<String, String> contextMap = new HashMap<>();
+                g.getContexts().forEach(context -> contextMap.put(context.getKey(), context.getValue()));
+                return new UserGroup(g.getGroup().getName(), contextMap);
+            })
             .collect(Collectors.toList());
     }
 

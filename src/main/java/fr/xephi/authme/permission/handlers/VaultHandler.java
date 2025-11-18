@@ -64,6 +64,7 @@ public class VaultHandler implements PermissionHandler {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean hasPermissionOffline(String name, PermissionNode node) {
         return vaultProvider.has((String) null, name, node.getNode());
     }

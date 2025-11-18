@@ -14,6 +14,7 @@ import org.apache.logging.log4j.message.Message;
  */
 public class Log4JFilter extends AbstractFilter {
 
+    @SuppressWarnings("unused")
     private static final long serialVersionUID = -5594073755007974254L;
 
     /**

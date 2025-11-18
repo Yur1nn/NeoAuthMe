@@ -43,6 +43,7 @@ public class ZPermissionsHandler implements PermissionHandler {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean hasPermissionOffline(String name, PermissionNode node) {
         Map<String, Boolean> perms = zPermissionsService.getPlayerPermissions(null, null, name);
         return perms.getOrDefault(node.getNode(), false);
@@ -61,6 +62,7 @@ public class ZPermissionsHandler implements PermissionHandler {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public Collection<UserGroup> getGroups(OfflinePlayer player) {
         return zPermissionsService.getPlayerGroups(player.getName()).stream()
             .map(UserGroup::new)
@@ -68,6 +70,7 @@ public class ZPermissionsHandler implements PermissionHandler {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public UserGroup getPrimaryGroup(OfflinePlayer player) {
         return new UserGroup(zPermissionsService.getPlayerPrimaryGroup(player.getName()));
     }
