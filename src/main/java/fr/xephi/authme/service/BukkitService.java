@@ -207,7 +207,16 @@ public class BukkitService implements SettingsDependent {
      * @return an offline player
      */
     public OfflinePlayer getOfflinePlayer(String name) {
-        return authMe.getServer().getOfflinePlayer(name);
+        // First try to get online player (no web request needed)
+        Player onlinePlayer = getPlayerExact(name);
+        if (onlinePlayer != null) {
+            return onlinePlayer;
+        }
+        // For offline players, use deprecated method which may make web request
+        // The modern API requires UUID, but we only have a name, so we suppress the warning
+        @SuppressWarnings("deprecation")
+        OfflinePlayer result = Bukkit.getOfflinePlayer(name);
+        return result;
     }
 
     /**

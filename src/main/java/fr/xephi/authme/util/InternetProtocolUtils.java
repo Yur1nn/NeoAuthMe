@@ -57,10 +57,6 @@ public final class InternetProtocolUtils {
         }
     }
 
-    private static boolean isLoopbackAddress(InetAddress address) {
-        return address.isLoopbackAddress();
-    }
-
     private static boolean isIPv6UniqueSiteLocal(InetAddress address) {
         // ref: https://en.wikipedia.org/wiki/Unique_local_address
 

@@ -40,11 +40,13 @@ public class Argon2 extends UnsaltedMethod {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String computeHash(String password) {
         return argon2.hash(2, 65536, 1, password);
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public boolean comparePassword(String password, HashedPassword hashedPassword, String name) {
         return argon2.verify(hashedPassword.getHash(), password);
     }

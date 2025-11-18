@@ -73,10 +73,9 @@ public class BungeeReceiver implements PluginMessageListener, SettingsDependent 
             return;
         }
 
-        // Parse argument
-        String argument;
+        // Parse argument (read but not used - consumed from stream for proper parsing)
         try {
-            argument = dataIn.readUTF();
+            dataIn.readUTF(); // Consume argument from stream
         } catch (IllegalStateException e) {
             logger.warning("Received invalid forwarded plugin message of type " + type.get().name()
                 + ": argument is missing!");

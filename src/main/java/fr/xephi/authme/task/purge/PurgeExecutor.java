@@ -4,7 +4,6 @@ import fr.xephi.authme.ConsoleLogger;
 import fr.xephi.authme.datasource.DataSource;
 import fr.xephi.authme.output.ConsoleLoggerFactory;
 import fr.xephi.authme.permission.PermissionsManager;
-import fr.xephi.authme.service.BukkitService;
 import fr.xephi.authme.service.PluginHookService;
 import fr.xephi.authme.settings.Settings;
 import fr.xephi.authme.settings.properties.PurgeSettings;
@@ -37,9 +36,6 @@ public class PurgeExecutor {
 
     @Inject
     private PluginHookService pluginHookService;
-
-    @Inject
-    private BukkitService bukkitService;
 
     @Inject
     private Server server;

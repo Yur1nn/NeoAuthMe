@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static fr.xephi.authme.util.Utils.logAndSendMessage;
@@ -112,12 +114,22 @@ public class BackupService {
 
         String backupWindowsPath = settings.getProperty(BackupSettings.MYSQL_WINDOWS_PATH);
         boolean isUsingWindows = useWindowsCommand(backupWindowsPath);
-        String backupCommand = isUsingWindows
-            ? backupWindowsPath + "\\bin\\mysqldump.exe" + buildMysqlDumpArguments(sqlBackupFile)
-            : "mysqldump" + buildMysqlDumpArguments(sqlBackupFile);
+        String executable = isUsingWindows
+            ? backupWindowsPath + "\\bin\\mysqldump.exe"
+            : "mysqldump";
+        String arguments = buildMysqlDumpArguments(sqlBackupFile);
 
         try {
-            Process runtimeProcess = Runtime.getRuntime().exec(backupCommand);
+            List<String> command = new ArrayList<>();
+            command.add(executable);
+            // Parse arguments (split by spaces, but handle quoted strings if needed)
+            String[] args = arguments.trim().split("\\s+");
+            for (String arg : args) {
+                if (!arg.isEmpty()) {
+                    command.add(arg);
+                }
+            }
+            Process runtimeProcess = new ProcessBuilder(command).start();
             int processComplete = runtimeProcess.waitFor();
             if (processComplete == 0) {
                 logger.info("Backup created successfully. (Using Windows = " + isUsingWindows + ")");

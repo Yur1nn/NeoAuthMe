@@ -38,7 +38,7 @@ public class AsyncRegister implements AsynchronousProcess {
     @Inject
     private CommonService service;
     @Inject
-    private SingletonStore<RegistrationExecutor> registrationExecutorFactory;
+    private SingletonStore<RegistrationExecutor<?>> registrationExecutorFactory;
 
     AsyncRegister() {
     }

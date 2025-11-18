@@ -24,7 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -204,7 +205,12 @@ public class GeoIpService {
             return null;
         }
 
-        HttpURLConnection connection = (HttpURLConnection) new URL(ARCHIVE_URL).openConnection();
+        HttpURLConnection connection;
+        try {
+            connection = (HttpURLConnection) new URI(ARCHIVE_URL).toURL().openConnection();
+        } catch (URISyntaxException e) {
+            throw new IOException("Invalid URL: " + ARCHIVE_URL, e);
+        }
         String basicAuth = "Basic " + new String(Base64.getEncoder().encode((clientId + ":" + licenseKey).getBytes()));
         connection.setRequestProperty("Authorization", basicAuth);
 

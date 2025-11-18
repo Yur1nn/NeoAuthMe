@@ -31,8 +31,12 @@ public final class YamlFileResourceProvider {
      */
     private static final class AuthMeYamlFileResource extends YamlFileResource {
 
+        private final File file;
+
+        @SuppressWarnings("deprecation")
         AuthMeYamlFileResource(File file) {
             super(file);
+            this.file = file;
         }
 
         @Override
@@ -40,7 +44,7 @@ public final class YamlFileResourceProvider {
             try {
                 return super.createReader();
             } catch (ConfigMeException e) {
-                throw new YamlParseException(getFile().getPath(), e);
+                throw new YamlParseException(file.getPath(), e);
             }
         }
     }

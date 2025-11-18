@@ -10,6 +10,7 @@ import static fr.xephi.authme.security.HashUtils.isEqual;
 @Recommendation(Usage.RECOMMENDED)
 public class XAuth extends HexSaltedMethod {
 
+    @SuppressWarnings("deprecation")
     private static String getWhirlpool(String message) {
         Whirlpool w = new Whirlpool();
         byte[] digest = new byte[Whirlpool.DIGESTBYTES];
