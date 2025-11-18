@@ -1,10 +1,16 @@
-# NeoAuthMe 6.0.0
+# NeoAuthMe 6.0.1
 
 **The best authentication plugin for Paper 1.21.10+!**
 
 ## ⚠️ Important Notice
 
-**This version requires Paper 1.21.10 or later.** It does not support older Minecraft versions, Spigot, or Paper versions below 1.21.10. This is a major release that uses the new Paper API.
+**This version requires Paper 1.21.10 or later.** It does not support older Minecraft versions, Spigot, or Paper versions below 1.21.10. This plugin uses the Paper API and requires specific features only available in Paper 1.21.10+.
+
+**⚠️ This plugin will NOT work on:**
+- Spigot
+- Bukkit
+- Paper versions below 1.21.10
+- Any other server software
 
 ## 📖 Description
 
@@ -54,9 +60,12 @@ NeoAuthMe disallows players who aren't authenticated to perform actions like pla
 
 ## 📋 Requirements
 
-- **Java 17+**
-- **Paper 1.21.10 or later** (required)
+- **Java 21+** (required)
+- **Paper 1.21.10 or later** (REQUIRED - will not work on older versions)
+- **Minecraft 1.21.10+** (required)
 - ProtocolLib (optional, required for some features like inventory protection)
+
+**Note:** This plugin is specifically built for Paper 1.21.10+ and uses APIs that are not available in Spigot, Bukkit, or older Paper versions.
 
 ## 🔗 Links
 
@@ -74,6 +83,13 @@ NeoAuthMe disallows players who aren't authenticated to perform actions like pla
 3. Start your server (Paper 1.21.10+)
 4. Configure NeoAuthMe in `plugins/NeoAuthMe/config.yml`
 5. Players will need to register and login to play!
+
+## 📝 What's New in 6.0.1
+
+- ✅ Removed version-specific branching logic - Simplified codebase
+- ✅ Single-branch workflow - Easier maintenance
+- ✅ Code cleanup - Removed unused methods and simplified comments
+- ✅ Improved maintainability
 
 ## 📝 What's New in 6.0.0
 

@@ -46,6 +46,9 @@ import static fr.xephi.authme.service.BukkitService.TICKS_PER_MINUTE;
 
 /**
  * The NeoAuthMe main class.
+ * 
+ * <p><b>Requirements:</b> This plugin requires Paper 1.21.10 or later.
+ * It does not support Spigot, Bukkit, or Paper versions below 1.21.10.
  */
 public class AuthMe extends JavaPlugin {
 
