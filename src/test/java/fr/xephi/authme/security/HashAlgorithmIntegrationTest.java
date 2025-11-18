@@ -60,6 +60,7 @@ public class HashAlgorithmIntegrationTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldBeAbleToInstantiateEncryptionAlgorithms() {
         // given / when / then
         for (HashAlgorithm algorithm : HashAlgorithm.values()) {
@@ -82,6 +83,7 @@ public class HashAlgorithmIntegrationTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldBeDeprecatedIfEncryptionClassIsDeprecated() throws NoSuchFieldException {
         // given
         List<String> failedEntries = new LinkedList<>();

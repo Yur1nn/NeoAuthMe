@@ -49,6 +49,7 @@ public class MigrationServiceTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldMigratePlaintextHashes() {
         // given
         PlayerAuth auth1 = authWithNickAndHash("bobby", "test");
@@ -75,6 +76,7 @@ public class MigrationServiceTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldNotMigrateShaHashes() {
         // given
         PlayerAuth auth1 = authWithNickAndHash("testUser", "abc1234");

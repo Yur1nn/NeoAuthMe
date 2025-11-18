@@ -75,7 +75,9 @@ public class AsyncChangeEmailTest {
         given(validationService.validateEmail(newEmail)).willReturn(true);
         given(validationService.isEmailFreeForRegistration(newEmail, player)).willReturn(true);
         EmailChangedEvent event = spy(new EmailChangedEvent(player, "old@mail.tld", newEmail, false));
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, EmailChangedEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
         
         // when
         process.changeEmail(player, "old@mail.tld", newEmail);
@@ -99,7 +101,9 @@ public class AsyncChangeEmailTest {
         given(validationService.validateEmail(newEmail)).willReturn(true);
         given(validationService.isEmailFreeForRegistration(newEmail, player)).willReturn(true);
         EmailChangedEvent event = spy(new EmailChangedEvent(player, oldEmail, newEmail, false));
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, EmailChangedEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
 
         // when
         process.changeEmail(player, "old-mail@example.org", newEmail);
@@ -122,7 +126,9 @@ public class AsyncChangeEmailTest {
         given(validationService.validateEmail(newEmail)).willReturn(true);
         given(validationService.isEmailFreeForRegistration(newEmail, player)).willReturn(true);
         EmailChangedEvent event = spy(new EmailChangedEvent(player, "old@mail.tld", newEmail, false));
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, EmailChangedEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
 
         // when
         process.changeEmail(player, "old@mail.tld", newEmail);
@@ -253,7 +259,9 @@ public class AsyncChangeEmailTest {
         given(validationService.isEmailFreeForRegistration(newEmail, player)).willReturn(true);
         EmailChangedEvent event = spy(new EmailChangedEvent(player, oldEmail, newEmail, false));
         event.setCancelled(true);
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, EmailChangedEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
 
         // when
         process.changeEmail(player, oldEmail, newEmail);

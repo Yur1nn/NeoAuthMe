@@ -5,8 +5,8 @@ import ch.jalu.configme.beanmapper.propertydescription.BeanPropertyDescription;
 import ch.jalu.configme.configurationdata.ConfigurationData;
 import ch.jalu.configme.configurationdata.ConfigurationDataBuilder;
 import ch.jalu.configme.resource.PropertyResource;
-import ch.jalu.configme.resource.YamlFileResource;
 import fr.xephi.authme.TestHelper;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 import fr.xephi.authme.settings.SettingsMigrationService;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -49,7 +49,7 @@ public class CommandMigrationServiceTest {
     public void shouldRewriteForEmptyFile() {
         // given
         File commandFile = TestHelper.getJarFile(TestHelper.PROJECT_ROOT + "settings/commandconfig/commands.empty.yml");
-        PropertyResource resource = new YamlFileResource(commandFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(commandFile);
 
         // when
         boolean result = commandMigrationService.checkAndMigrate(
@@ -63,7 +63,7 @@ public class CommandMigrationServiceTest {
     public void shouldRewriteIncompleteFile() {
         // given
         File commandFile = TestHelper.getJarFile(TestHelper.PROJECT_ROOT + "settings/commandconfig/commands.incomplete.yml");
-        PropertyResource resource = new YamlFileResource(commandFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(commandFile);
 
         // when
         boolean result = commandMigrationService.checkAndMigrate(
@@ -77,7 +77,7 @@ public class CommandMigrationServiceTest {
     public void shouldNotChangeCompleteFile() {
         // given
         File commandFile = TestHelper.getJarFile(TestHelper.PROJECT_ROOT + "settings/commandconfig/commands.complete.yml");
-        PropertyResource resource = new YamlFileResource(commandFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(commandFile);
 
         // when
         boolean result = commandMigrationService.checkAndMigrate(
@@ -112,7 +112,7 @@ public class CommandMigrationServiceTest {
             .willReturn("helpop %playername% (%playerip%) has other accounts!");
         given(settingsMigrationService.getOldOtherAccountsCommandThreshold()).willReturn(3);
         File commandFile = TestHelper.getJarFile(TestHelper.PROJECT_ROOT + "settings/commandconfig/commands.complete.yml");
-        PropertyResource resource = new YamlFileResource(commandFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(commandFile);
         ConfigurationData configurationData = ConfigurationDataBuilder.createConfiguration(CommandSettingsHolder.class);
 
         // when

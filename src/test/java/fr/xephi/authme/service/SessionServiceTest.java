@@ -176,7 +176,9 @@ public class SessionServiceTest {
             .lastIp(ip).build();
         given(dataSource.getAuth(name)).willReturn(auth);
         RestoreSessionEvent event = spy(new RestoreSessionEvent(player, false));
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, RestoreSessionEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
 
         // when
         boolean result = sessionService.canResumeSession(player);

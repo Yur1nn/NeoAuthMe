@@ -5,6 +5,7 @@ package fr.xephi.authme.security.crypts;
  */
 public class DoubleMd5Test extends AbstractEncryptionMethodTest {
 
+    @SuppressWarnings("deprecation")
     public DoubleMd5Test() {
         super(new DoubleMd5(),
             "696d29e0940a4957748fe3fc9efd22a3",  // password

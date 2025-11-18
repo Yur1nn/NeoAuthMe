@@ -2,8 +2,8 @@ package fr.xephi.authme.settings.commandconfig;
 
 import ch.jalu.configme.configurationdata.ConfigurationDataBuilder;
 import ch.jalu.configme.resource.PropertyResource;
-import ch.jalu.configme.resource.YamlFileResource;
 import fr.xephi.authme.TestHelper;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 import fr.xephi.authme.settings.SettingsMigrationService;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,7 +38,7 @@ public class CommandYmlConsistencyTest {
     public void shouldLoadWithNoMigrations() {
         // given
         File commandFile = TestHelper.getJarFile("/commands.yml");
-        PropertyResource resource = new YamlFileResource(commandFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(commandFile);
 
         // when
         boolean result = commandMigrationService.checkAndMigrate(

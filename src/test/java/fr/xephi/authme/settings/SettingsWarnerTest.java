@@ -1,6 +1,5 @@
 package fr.xephi.authme.settings;
 
-import fr.xephi.authme.AuthMe;
 import fr.xephi.authme.TestHelper;
 import fr.xephi.authme.security.HashAlgorithm;
 import fr.xephi.authme.service.BukkitService;
@@ -60,6 +59,7 @@ public class SettingsWarnerTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldWarnBungeeWithoutSpigot() {
         Logger logger = TestHelper.setupLogger();
 
@@ -80,6 +80,7 @@ public class SettingsWarnerTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldNotLogAnyWarning() {
         Logger logger = TestHelper.setupLogger();
         given(settings.getProperty(RestrictionSettings.FORCE_SINGLE_SESSION)).willReturn(true);

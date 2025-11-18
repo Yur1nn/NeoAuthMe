@@ -74,7 +74,9 @@ public class AsyncAddEmailTest {
         given(validationService.validateEmail(email)).willReturn(true);
         given(validationService.isEmailFreeForRegistration(email, player)).willReturn(true);
         EmailChangedEvent event = spy(new EmailChangedEvent(player, null, email, false));
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, EmailChangedEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
 
         // when
         asyncAddEmail.addEmail(player, email);
@@ -99,7 +101,9 @@ public class AsyncAddEmailTest {
         given(validationService.validateEmail(email)).willReturn(true);
         given(validationService.isEmailFreeForRegistration(email, player)).willReturn(true);
         EmailChangedEvent event = spy(new EmailChangedEvent(player, null, email, false));
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, EmailChangedEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
 
         // when
         asyncAddEmail.addEmail(player, email);
@@ -208,7 +212,9 @@ public class AsyncAddEmailTest {
         given(validationService.isEmailFreeForRegistration(email, player)).willReturn(true);
         EmailChangedEvent event = spy(new EmailChangedEvent(player, null, email, false));
         event.setCancelled(true);
-        given(bukkitService.createAndCallEvent(any(Function.class))).willReturn(event);
+        @SuppressWarnings("unchecked")
+        Function<Boolean, EmailChangedEvent> eventFunction = any(Function.class);
+        given(bukkitService.createAndCallEvent(eventFunction)).willReturn(event);
 
         // when
         asyncAddEmail.addEmail(player, email);

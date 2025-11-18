@@ -103,7 +103,9 @@ public class PasswordSecurityTest {
             .create();
         injector.register(Settings.class, settings);
 
-        given(hashAlgorithmFactory.newInstance(any(Class.class))).willAnswer(invocation -> {
+        @SuppressWarnings("unchecked")
+        Class<? extends HashAlgorithm> hashAlgorithmClass = any(Class.class);
+        given(hashAlgorithmFactory.newInstance(hashAlgorithmClass)).willAnswer(invocation -> {
                 Object o = injector.createIfHasDependencies(invocation.getArgument(0));
                 if (o == null) {
                     throw new IllegalArgumentException("Cannot create object of class '" + invocation.getArgument(0)
@@ -173,6 +175,7 @@ public class PasswordSecurityTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldTryOtherMethodsForFailedPassword() {
         // given
         // BCRYPT hash for "Test"
@@ -206,6 +209,7 @@ public class PasswordSecurityTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldTryLegacyMethodsAndFail() {
         // given
         HashedPassword password = new HashedPassword("hashNotMatchingAnyMethod", "someBogusSalt");
@@ -269,6 +273,7 @@ public class PasswordSecurityTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void shouldReloadSettings() {
         // given
         given(settings.getProperty(SecuritySettings.PASSWORD_HASH)).willReturn(HashAlgorithm.MD5);

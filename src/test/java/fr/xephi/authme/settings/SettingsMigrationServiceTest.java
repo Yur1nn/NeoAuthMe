@@ -3,8 +3,8 @@ package fr.xephi.authme.settings;
 import ch.jalu.configme.configurationdata.ConfigurationData;
 import ch.jalu.configme.resource.PropertyReader;
 import ch.jalu.configme.resource.PropertyResource;
-import ch.jalu.configme.resource.YamlFileResource;
 import com.google.common.io.Files;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 import fr.xephi.authme.TestHelper;
 import fr.xephi.authme.initialization.DataFolder;
 import fr.xephi.authme.output.LogLevel;
@@ -63,7 +63,7 @@ public class SettingsMigrationServiceTest {
         File dataFolder = temporaryFolder.newFolder();
         File configFile = new File(dataFolder, "config.yml");
         Files.copy(getJarFile(OLD_CONFIG_FILE), configFile);
-        PropertyResource resource = new YamlFileResource(configFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(configFile);
         SettingsMigrationService migrationService = new SettingsMigrationService(dataFolder);
 
         // when
@@ -84,13 +84,13 @@ public class SettingsMigrationServiceTest {
         File dataFolder = temporaryFolder.newFolder();
         File configFile = new File(dataFolder, "config.yml");
         Files.copy(getJarFile(OLD_CONFIG_FILE), configFile);
-        PropertyResource resource = new YamlFileResource(configFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(configFile);
         TestMigrationServiceExtension migrationService = new TestMigrationServiceExtension(dataFolder);
         ConfigurationData configurationData = AuthMeSettingsRetriever.buildConfigurationData();
 
         // when
         new Settings(dataFolder, resource, migrationService, configurationData);
-        resource = new YamlFileResource(configFile);
+        resource = YamlFileResourceProvider.loadFromFile(configFile);
         Settings settings = new Settings(dataFolder, resource, migrationService, configurationData);
 
         // then
@@ -104,7 +104,7 @@ public class SettingsMigrationServiceTest {
         File dataFolder = temporaryFolder.newFolder();
         File configFile = new File(dataFolder, "config.yml");
         Files.copy(getJarFile(OLD_CONFIG_FILE), configFile);
-        PropertyResource resource = new YamlFileResource(configFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(configFile);
         SettingsMigrationService migrationService = new SettingsMigrationService(dataFolder);
 
         // when
@@ -116,6 +116,7 @@ public class SettingsMigrationServiceTest {
         assertThat(migrationService.getOldOtherAccountsCommandThreshold(), equalTo(5));
     }
 
+    @SuppressWarnings("deprecation")
     private void verifyHasUpToDateSettings(Settings settings, File dataFolder) throws IOException {
         assertThat(settings.getProperty(ALLOWED_NICKNAME_CHARACTERS), equalTo(ALLOWED_NICKNAME_CHARACTERS.getDefaultValue()));
         assertThat(settings.getProperty(DELAY_JOIN_MESSAGE), equalTo(true));

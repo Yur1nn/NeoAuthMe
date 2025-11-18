@@ -5,8 +5,8 @@ import ch.jalu.configme.configurationdata.ConfigurationDataBuilder;
 import ch.jalu.configme.migration.PlainMigrationService;
 import ch.jalu.configme.properties.Property;
 import ch.jalu.configme.resource.PropertyResource;
-import ch.jalu.configme.resource.YamlFileResource;
 import com.google.common.collect.ImmutableMap;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 import com.google.common.io.Files;
 import fr.xephi.authme.TestHelper;
 import fr.xephi.authme.settings.properties.TestConfiguration;
@@ -58,7 +58,7 @@ public class SettingsIntegrationTest {
     @Test
     public void shouldLoadAndReadAllProperties() throws IOException {
         // given
-        PropertyResource resource = new YamlFileResource(copyFileFromResources(COMPLETE_FILE));
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(copyFileFromResources(COMPLETE_FILE));
         // Pass another, non-existent file to check if the settings had to be rewritten
         File newFile = temporaryFolder.newFile();
 
@@ -88,12 +88,12 @@ public class SettingsIntegrationTest {
     public void shouldWriteMissingProperties() {
         // given/when
         File file = copyFileFromResources(INCOMPLETE_FILE);
-        PropertyResource resource = new YamlFileResource(file);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(file);
         // Expectation: File is rewritten to since it does not have all configurations
         new Settings(testPluginFolder, resource, new PlainMigrationService(), CONFIG_DATA);
 
         // Load the settings again -> checks that what we wrote can be loaded again
-        resource = new YamlFileResource(file);
+        resource = YamlFileResourceProvider.loadFromFile(file);
 
         // then
         Settings settings = new Settings(testPluginFolder, resource,
@@ -120,7 +120,7 @@ public class SettingsIntegrationTest {
     public void shouldReloadSettings() throws IOException {
         // given
         File configFile = temporaryFolder.newFile();
-        PropertyResource resource = new YamlFileResource(configFile);
+        PropertyResource resource = YamlFileResourceProvider.loadFromFile(configFile);
         Settings settings = new Settings(testPluginFolder, resource, null, CONFIG_DATA);
 
         // when
