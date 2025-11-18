@@ -15,7 +15,7 @@ import fr.xephi.authme.initialization.TaskCloser;
 import fr.xephi.authme.listener.BlockListener;
 import fr.xephi.authme.listener.EntityListener;
 import fr.xephi.authme.listener.PlayerListener;
-import fr.xephi.authme.listener.PlayerListener19Spigot;
+import fr.xephi.authme.listener.PlayerSpawnLocationListener;
 import fr.xephi.authme.listener.ServerListener;
 import fr.xephi.authme.output.ConsoleLoggerFactory;
 import fr.xephi.authme.security.crypts.Sha256;
@@ -269,7 +269,7 @@ public class AuthMe extends JavaPlugin {
 
         // Register Paper 1.21.10+ spawn location listener
         // Note: Paper 1.21.10+ is required, so AsyncPlayerSpawnLocationEvent is always available
-        pluginManager.registerEvents(injector.getSingleton(PlayerListener19Spigot.class), this);
+        pluginManager.registerEvents(injector.getSingleton(PlayerSpawnLocationListener.class), this);
     }
 
     /**

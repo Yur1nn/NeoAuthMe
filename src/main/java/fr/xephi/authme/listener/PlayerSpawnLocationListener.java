@@ -5,12 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
-public class PlayerListener19Spigot implements Listener {
+public class PlayerSpawnLocationListener implements Listener {
 
-    private static boolean isPlayerSpawnLocationEventCalled = false;
+    private static boolean wasSpawnLocationEventCalled = false;
 
-    public static boolean isPlayerSpawnLocationEventCalled() {
-        return isPlayerSpawnLocationEventCalled;
+    public static boolean wasSpawnLocationEventCalled() {
+        return wasSpawnLocationEventCalled;
     }
 
     // Paper 1.21.10+ uses AsyncPlayerSpawnLocationEvent for spawn location handling
@@ -18,8 +18,8 @@ public class PlayerListener19Spigot implements Listener {
     // Note: Player object is not available in async event (happens during configuration phase per Paper API)
     // Player-specific spawn logic will be handled in PlayerJoinEvent instead
     @EventHandler(priority = EventPriority.HIGH)
-    public void onPlayerSpawn(AsyncPlayerSpawnLocationEvent event) {
-        isPlayerSpawnLocationEventCalled = true;
+    public void onAsyncPlayerSpawnLocation(AsyncPlayerSpawnLocationEvent event) {
+        wasSpawnLocationEventCalled = true;
         // Player object is not available in AsyncPlayerSpawnLocationEvent (configuration phase)
         // According to Paper API: "the Player instance is not available during this event"
         // Spawn location with player-specific logic will be handled in PlayerJoinEvent
