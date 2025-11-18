@@ -45,7 +45,7 @@ public final class ReflectionTestUtils {
      * @param fieldName the field name
      * @param value the value to set the field to
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static void setField(Object instance, String fieldName, Object value) {
         setField((Class) instance.getClass(), instance, fieldName, value);
     }
@@ -61,7 +61,6 @@ public final class ReflectionTestUtils {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public static <T, V> V getFieldValue(Class<T> clazz, T instance, String fieldName) {
         Field field = getField(clazz, fieldName);
         return getFieldValue(field, instance);

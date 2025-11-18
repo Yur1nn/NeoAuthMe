@@ -60,6 +60,7 @@ public class ClassesConsistencyTest {
         ImmutableMap.class, ImmutableList.class);
 
     /** Classes excluded from the field visibility test. */
+    @SuppressWarnings("deprecation")
     private static final Set<Class<?>> CLASSES_EXCLUDED_FROM_VISIBILITY_TEST = ImmutableSet.of(
         Whirlpool.class, // not our implementation, so we don't touch it
         MySqlExtension.class, // has immutable protected fields used by all children

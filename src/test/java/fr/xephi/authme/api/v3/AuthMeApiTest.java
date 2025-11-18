@@ -26,7 +26,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -201,11 +200,11 @@ public class AuthMeApiTest {
         given(playerCache.getAuth(name)).willReturn(auth);
 
         // when
-        Date result = api.getLastLogin(name);
+        Instant result = api.getLastLoginTime(name);
 
         // then
         assertThat(result, not(nullValue()));
-        assertThat(result, equalTo(new Date(1501597979L)));
+        assertThat(result, equalTo(Instant.ofEpochMilli(1501597979L)));
     }
 
     @Test
@@ -218,9 +217,10 @@ public class AuthMeApiTest {
         given(dataSource.getAuth(name)).willReturn(auth);
 
         // when
-        Date result = api.getLastLogin(name);
+        Instant result = api.getLastLoginTime(name);
 
         // then
+        
         assertThat(result, nullValue());
         verify(dataSource).getAuth(name);
     }
