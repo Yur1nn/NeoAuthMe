@@ -191,7 +191,7 @@ public class MessageUpdater {
             propertyListBuilder.add(new MessageKeyProperty(key));
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({"unchecked", "rawtypes"})
         List<MessageKeyProperty> getAllProperties() {
             return (List) propertyListBuilder.create();
         }

@@ -106,6 +106,7 @@ final class MessageMigraterPropertyReader implements PropertyReader {
         throw new UnsupportedOperationException();
     }
 
+    @SuppressWarnings("unchecked")
     private static Map<String, Object> readStreamToMap(InputStream inputStream) {
         try (InputStreamReader isr = new InputStreamReader(inputStream, CHARSET)) {
             Object obj = new Yaml().load(isr);

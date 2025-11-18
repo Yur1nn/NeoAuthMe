@@ -33,12 +33,13 @@ public class MessageKeyConfigurationData extends ConfigurationDataImpl {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> T getValue(Property<T> property) {
         // Override to silently return null if property is unknown
         return (T) getValues().get(property.getPath());
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public List<Property<String>> getAllMessageProperties() {
         return (List) getProperties();
     }

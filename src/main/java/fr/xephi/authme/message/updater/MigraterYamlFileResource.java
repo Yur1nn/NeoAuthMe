@@ -12,15 +12,18 @@ import java.io.File;
  */
 public class MigraterYamlFileResource extends YamlFileResource {
 
+    private final File file;
     private Yaml singleQuoteYaml;
 
+    @SuppressWarnings("deprecation")
     public MigraterYamlFileResource(File file) {
         super(file);
+        this.file = file;
     }
 
     @Override
     public PropertyReader createReader() {
-        return MessageMigraterPropertyReader.loadFromFile(getFile());
+        return MessageMigraterPropertyReader.loadFromFile(file);
     }
 
     @Override
