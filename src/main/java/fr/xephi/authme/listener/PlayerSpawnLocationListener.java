@@ -13,9 +13,9 @@ public class PlayerSpawnLocationListener implements Listener {
         return wasSpawnLocationEventCalled;
     }
 
-    // Paper 1.21.10+ uses AsyncPlayerSpawnLocationEvent for spawn location handling
+    // AsyncPlayerSpawnLocationEvent is used for spawn location handling
     // This event should only set spawn location, not teleport (Player object is not available)
-    // Note: Player object is not available in async event (happens during configuration phase per Paper API)
+    // Note: Player object is not available in async event (happens during configuration phase)
     // Player-specific spawn logic will be handled in PlayerJoinEvent instead
     @EventHandler(priority = EventPriority.HIGH)
     public void onAsyncPlayerSpawnLocation(AsyncPlayerSpawnLocationEvent event) {

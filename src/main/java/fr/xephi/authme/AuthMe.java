@@ -43,7 +43,6 @@ import java.io.File;
 import java.util.function.Consumer;
 
 import static fr.xephi.authme.service.BukkitService.TICKS_PER_MINUTE;
-import static fr.xephi.authme.util.Utils.isClassLoaded;
 
 /**
  * The NeoAuthMe main class.
@@ -120,15 +119,6 @@ public class AuthMe extends JavaPlugin {
         // Set the Logger instance and log file path
         ConsoleLogger.initialize(getLogger(), new File(getDataFolder(), LOG_FILENAME));
         logger = ConsoleLoggerFactory.get(AuthMe.class);
-
-        // Check server version - NeoAuthMe 6.0.0+ requires Paper 1.21.10+
-        if (!isClassLoaded("io.papermc.paper.event.player.AsyncPlayerSpawnLocationEvent")
-            || !isClassLoaded("org.bukkit.event.player.PlayerInteractAtEntityEvent")) {
-            logger.warning("You are running an unsupported server version (" + getServerNameVersionSafe() + "). "
-                + "NeoAuthMe 6.0.0+ requires Paper 1.21.10 or later!");
-            stopOrUnload();
-            return;
-        }
 
         // Prevent running AuthMeBridge due to major exploit issues
         if (getServer().getPluginManager().isPluginEnabled("AuthMeBridge")) {
@@ -267,8 +257,7 @@ public class AuthMe extends JavaPlugin {
         pluginManager.registerEvents(injector.getSingleton(EntityListener.class), this);
         pluginManager.registerEvents(injector.getSingleton(ServerListener.class), this);
 
-        // Register Paper 1.21.10+ spawn location listener
-        // Note: Paper 1.21.10+ is required, so AsyncPlayerSpawnLocationEvent is always available
+        // Register spawn location listener
         pluginManager.registerEvents(injector.getSingleton(PlayerSpawnLocationListener.class), this);
     }
 
@@ -329,14 +318,5 @@ public class AuthMe extends JavaPlugin {
 
         // Handle the command
         return commandHandler.processCommand(sender, commandLabel, args);
-    }
-
-    private String getServerNameVersionSafe() {
-        try {
-            Server server = getServer();
-            return server.getName() + " v. " + server.getVersion();
-        } catch (Throwable ignore) {
-            return "-";
-        }
     }
 }
