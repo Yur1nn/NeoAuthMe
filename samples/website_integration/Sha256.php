@@ -5,7 +5,7 @@
  * ------------------------------------------------------- *
  * See AuthMeController for details.                       *
  *                                                         *
- * Source: https://github.com/AuthMe/AuthMeReloaded/       *
+ * Source: https://github.com/Yur1nn/NeoAuthMe/       *
  ***********************************************************/
 class Sha256 extends AuthMeController {
 

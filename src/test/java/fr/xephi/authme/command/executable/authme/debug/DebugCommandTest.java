@@ -72,6 +72,7 @@ public class DebugCommandTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void shouldListAllAvailableDebugSections() {
         // given
         CommandSender sender = mock(CommandSender.class);
@@ -83,9 +84,7 @@ public class DebugCommandTest {
         command.executeCommand(sender, emptyList());
 
         // then
-        @SuppressWarnings("unchecked")
-        Class<? extends DebugSection> debugSectionClass = any(Class.class);
-        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(debugSectionClass);
+        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(any(Class.class));
         verify(permissionsManager, atLeast(MIN_DEBUG_SECTIONS)).hasPermission(eq(sender), any(DebugSectionPermissions.class));
 
         ArgumentCaptor<String> strCaptor = ArgumentCaptor.forClass(String.class);
@@ -98,6 +97,7 @@ public class DebugCommandTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void shouldNotListAnyDebugSection() {
         // given
         CommandSender sender = mock(CommandSender.class);
@@ -107,9 +107,7 @@ public class DebugCommandTest {
         command.executeCommand(sender, emptyList());
 
         // then
-        @SuppressWarnings("unchecked")
-        Class<? extends DebugSection> debugSectionClass = any(Class.class);
-        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(debugSectionClass);
+        verify(debugSectionFactory, atLeast(MIN_DEBUG_SECTIONS)).newInstance(any(Class.class));
         verify(permissionsManager, atLeast(MIN_DEBUG_SECTIONS)).hasPermission(eq(sender), any(DebugSectionPermissions.class));
 
         ArgumentCaptor<String> strCaptor = ArgumentCaptor.forClass(String.class);

@@ -5,7 +5,7 @@
 You can use the following commands to use the features of AuthMe. Mandatory arguments are marked with `< >`
 brackets; optional arguments are enclosed in square brackets (`[ ]`).
 
-- **/authme**: The main AuthMeReloaded command. The root for all admin commands.
+- **/authme**: The main NeoAuthMe command. The root for all admin commands.
 - **/authme register** &lt;player> &lt;password>: Register the specified player with the specified password.
   <br />Requires `authme.admin.register`
 - **/authme unregister** &lt;player>: Unregister the specified player.
@@ -36,7 +36,7 @@ brackets; optional arguments are enclosed in square brackets (`[ ]`).
   <br />Requires `authme.admin.firstspawn`
 - **/authme setfirstspawn**: Change the first player's spawn to your current position.
   <br />Requires `authme.admin.setfirstspawn`
-- **/authme purge** &lt;days>: Purge old AuthMeReloaded data longer than the specified number of days ago.
+- **/authme purge** &lt;days>: Purge old NeoAuthMe data longer than the specified number of days ago.
   <br />Requires `authme.admin.purge`
 - **/authme purgeplayer** &lt;player> [options]: Purges data of the given player.
   <br />Requires `authme.admin.purgeplayer`
@@ -44,14 +44,14 @@ brackets; optional arguments are enclosed in square brackets (`[ ]`).
   <br />Requires `authme.admin.backup`
 - **/authme resetpos** &lt;player/*>: Purge the last know position of the specified player or all of them.
   <br />Requires `authme.admin.purgelastpos`
-- **/authme purgebannedplayers**: Purge all AuthMeReloaded data for banned players.
+- **/authme purgebannedplayers**: Purge all NeoAuthMe data for banned players.
   <br />Requires `authme.admin.purgebannedplayers`
 - **/authme switchantibot** [mode]: Switch or toggle the AntiBot mode to the specified state.
   <br />Requires `authme.admin.switchantibot`
-- **/authme reload**: Reload the AuthMeReloaded plugin.
+- **/authme reload**: Reload the NeoAuthMe plugin.
   <br />Requires `authme.admin.reload`
-- **/authme version**: Show detailed information about the installed AuthMeReloaded version, the developers, contributors, and license.
-- **/authme converter** [job]: Converter command for AuthMeReloaded.
+- **/authme version**: Show detailed information about the installed NeoAuthMe version, the developers, contributors, and license.
+- **/authme converter** [job]: Converter command for NeoAuthMe.
   <br />Requires `authme.admin.converter`
 - **/authme messages**: Adds missing texts to the current help messages file.
   <br />Requires `authme.admin.updatemessages`
@@ -60,7 +60,7 @@ brackets; optional arguments are enclosed in square brackets (`[ ]`).
 - **/authme debug** [child] [arg] [arg]: Allows various operations for debugging.
   <br />Requires `authme.debug.command`
 - **/authme help** [query]: View detailed help for /authme commands.
-- **/email**: The AuthMeReloaded email command base.
+- **/email**: The NeoAuthMe email command base.
 - **/email show**: Show your current email address.
   <br />Requires `authme.player.email.see`
 - **/email add** &lt;email> &lt;verifyEmail>: Add a new email address to your account.
@@ -74,19 +74,19 @@ brackets; optional arguments are enclosed in square brackets (`[ ]`).
 - **/email setpassword** &lt;password>: Set a new password after successfully recovering your account.
   <br />Requires `authme.player.email.recover`
 - **/email help** [query]: View detailed help for /email commands.
-- **/login** &lt;password>: Command to log in using AuthMeReloaded.
+- **/login** &lt;password>: Command to log in using NeoAuthMe.
   <br />Requires `authme.player.login`
 - **/login help** [query]: View detailed help for /login commands.
-- **/logout**: Command to logout using AuthMeReloaded.
+- **/logout**: Command to logout using NeoAuthMe.
   <br />Requires `authme.player.logout`
 - **/logout help** [query]: View detailed help for /logout commands.
-- **/register** [password] [verifyPassword]: Command to register using AuthMeReloaded.
+- **/register** [password] [verifyPassword]: Command to register using NeoAuthMe.
   <br />Requires `authme.player.register`
 - **/register help** [query]: View detailed help for /register commands.
-- **/unregister** &lt;password>: Command to unregister using AuthMeReloaded.
+- **/unregister** &lt;password>: Command to unregister using NeoAuthMe.
   <br />Requires `authme.player.unregister`
 - **/unregister help** [query]: View detailed help for /unregister commands.
-- **/changepassword** &lt;oldPassword> &lt;newPassword>: Command to change your password using AuthMeReloaded.
+- **/changepassword** &lt;oldPassword> &lt;newPassword>: Command to change your password using NeoAuthMe.
   <br />Requires `authme.player.changepassword`
 - **/changepassword help** [query]: View detailed help for /changepassword commands.
 - **/totp**: Performs actions related to two-factor authentication.
@@ -98,14 +98,14 @@ brackets; optional arguments are enclosed in square brackets (`[ ]`).
 - **/totp remove** &lt;code>: Disables two-factor authentication for your account.
   <br />Requires `authme.player.totpremove`
 - **/totp help** [query]: View detailed help for /totp commands.
-- **/captcha** &lt;captcha>: Captcha command for AuthMeReloaded.
+- **/captcha** &lt;captcha>: Captcha command for NeoAuthMe.
   <br />Requires `authme.player.captcha`
 - **/captcha help** [query]: View detailed help for /captcha commands.
-- **/verification** &lt;code>: Command to complete the verification process for AuthMeReloaded.
+- **/verification** &lt;code>: Command to complete the verification process for NeoAuthMe.
   <br />Requires `authme.player.security.verificationcode`
 - **/verification help** [query]: View detailed help for /verification commands.
 
 
 ---
 
-This page was automatically generated on the [AuthMe/AuthMeReloaded repository](https://github.com/AuthMe/AuthMeReloaded/tree/master/docs/) on Sun Apr 04 21:31:42 CEST 2021
+This page was automatically generated on the [Yur1nn/NeoAuthMe repository](https://github.com/Yur1nn/NeoAuthMe/tree/master/docs/) on Sun Apr 04 21:31:42 CEST 2021

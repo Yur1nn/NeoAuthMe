@@ -3,12 +3,12 @@ name: ${pluginDescription.name}
 # noinspection YAMLSchemaValidation
 authors: [${pluginDescription.authors}]
 website: ${project.url}
-# REQUIRES Paper 1.21.10 or later - does not support Spigot, Bukkit, or Paper versions below 1.21.10
+# REQUIRES Paper 1.21.10 or later - only Paper is officially supported
 description: ${project.description}
 # noinspection YAMLSchemaValidation
 main: ${pluginDescription.main}
 version: ${pluginDescription.version}
-# API version 1.21 - requires Paper 1.21.10+ (not compatible with older versions)
+# API version 1.21 - requires server software 1.21.10+ (only Paper is officially supported)
 api-version: 1.21
 softdepend:
     - Vault

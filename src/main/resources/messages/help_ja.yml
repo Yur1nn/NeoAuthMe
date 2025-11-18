@@ -3,7 +3,7 @@
 # -------------------------------------------------------
 # List of texts used in the help section
 common:
-    header: '==========[ AuthMeReloaded ヘルプ ]=========='
+    header: '==========[ NeoAuthMe ヘルプ ]=========='
     optional: 'オプション'
     hasPermission: '権限を持っています'
     noPermission: '権限がありません'

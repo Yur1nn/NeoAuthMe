@@ -72,7 +72,7 @@ commands:
   # Command that is not present at all
   #logout:
   #  description: Logout command
-  #  detailedDescription: Command to logout using AuthMeReloaded.
+  #  detailedDescription: Command to logout using NeoAuthMe.
 
   # Entry with too many args
   unregister:

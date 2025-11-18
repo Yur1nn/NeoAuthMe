@@ -1,14 +1,18 @@
 package fr.xephi.authme.listener;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.PlayerEvent;
 
 import java.util.function.Consumer;
 
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 
@@ -47,14 +51,33 @@ public final class EventCancelVerifier {
      */
     public <T extends Event & Cancellable> EventCancelVerifier check(Consumer<T> listenerMethod, Class<T> clazz) {
         T event = mock(clazz);
-        mockShouldCancel(true, listenerService, event);
+        // Special handling for EntityPickupItemEvent - needs entity to be a Player and mocks shouldCancelEvent(Player)
+        if (clazz == EntityPickupItemEvent.class) {
+            Player player = mock(Player.class);
+            given(((EntityPickupItemEvent) event).getEntity()).willReturn(player);
+            given(listenerService.shouldCancelEvent(player)).willReturn(true);
+        } else {
+            mockShouldCancel(true, listenerService, event);
+        }
         listenerMethod.accept(event);
         verify(event).setCancelled(true);
 
         event = mock(clazz);
-        mockShouldCancel(false, listenerService, event);
+        // Special handling for EntityPickupItemEvent - needs entity to be a Player and mocks shouldCancelEvent(Player)
+        if (clazz == EntityPickupItemEvent.class) {
+            Player player = mock(Player.class);
+            given(((EntityPickupItemEvent) event).getEntity()).willReturn(player);
+            given(listenerService.shouldCancelEvent(player)).willReturn(false);
+        } else {
+            mockShouldCancel(false, listenerService, event);
+        }
         listenerMethod.accept(event);
-        verifyNoInteractions(event);
+        // For EntityPickupItemEvent, getEntity() is called even when not cancelling, so we only verify setCancelled wasn't called
+        if (clazz == EntityPickupItemEvent.class) {
+            verify(event, never()).setCancelled(anyBoolean());
+        } else {
+            verifyNoInteractions(event);
+        }
 
         return this;
     }

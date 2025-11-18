@@ -38,7 +38,7 @@ public class AsyncRegister implements AsynchronousProcess {
     @Inject
     private CommonService service;
     @Inject
-    private SingletonStore<RegistrationExecutor<?>> registrationExecutorFactory;
+    private SingletonStore<Object> registrationExecutorFactory;
 
     AsyncRegister() {
     }
@@ -52,7 +52,7 @@ public class AsyncRegister implements AsynchronousProcess {
      */
     public <P extends RegistrationParameters> void register(RegistrationMethod<P> variant, P parameters) {
         if (preRegisterCheck(variant, parameters.getPlayer())) {
-            RegistrationExecutor<P> executor = registrationExecutorFactory.getSingleton(variant.getExecutorClass());
+            RegistrationExecutor<P> executor = (RegistrationExecutor<P>) registrationExecutorFactory.getSingleton(variant.getExecutorClass());
             if (executor.isRegistrationAdmitted(parameters)) {
                 executeRegistration(parameters, executor);
             }

@@ -1,5 +1,5 @@
 common:
-    header: '==========[ AuthMeReloaded Helpo ]=========='
+    header: '==========[ NeoAuthMe Helpo ]=========='
     optional: 'Laŭvola'
     hasPermission: 'Vi havas permeson'
     noPermission: 'Neniun permeson'

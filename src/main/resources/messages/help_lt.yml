@@ -3,7 +3,7 @@
 # -------------------------------------------------------
 # List of texts used in the help section
 common:
-    header: '==========[ AuthMeReloaded PAGALBA ]=========='
+    header: '==========[ NeoAuthMe PAGALBA ]=========='
     optional: 'Neprivaloma'
     hasPermission: 'Jūs turite leidimą'
     noPermission: 'Jūs neturite leidimo'

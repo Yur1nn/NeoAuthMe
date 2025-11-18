@@ -118,7 +118,7 @@ settings:
         # A player's session ends after the timeout or if his IP has changed
         timeout: 10
     # Message language, available languages:
-    # https://github.com/AuthMe/AuthMeReloaded/blob/master/docs/translations.md
+    # https://github.com/Yur1nn/NeoAuthMe/blob/master/docs/translations.md
     messagesLanguage: en
     # Forces authme to hook into Vault instead of a specific permission handler system.
     forceVaultHook: false
@@ -247,13 +247,13 @@ settings:
         UnrestrictedInventories: []
     security:
         # Minimum length of password
-        minPasswordLength: 5
+        minPasswordLength: 8
         # Maximum length of password
-        passwordMaxLength: 30
+        passwordMaxLength: 32
         # Possible values: SHA256, BCRYPT, BCRYPT2Y, PBKDF2, SALTEDSHA512,
         # MYBB, IPB3, PHPBB, PHPFUSION, SMF, XENFORO, XAUTH, JOOMLA, WBB3, WBB4, MD5VB,
         # PBKDF2DJANGO, WORDPRESS, ROYALAUTH, ARGON2, CUSTOM (for developers only). See full list at
-        # https://github.com/AuthMe/AuthMeReloaded/blob/master/docs/hash_algorithms.md
+        # https://github.com/Yur1nn/NeoAuthMe/blob/master/docs/hash_algorithms.md
         # If you use ARGON2, check that you have the argon2 c library on your system
         passwordHash: SHA256
         # If a password check fails, AuthMe will also try to check with the following hash methods.
@@ -292,7 +292,7 @@ settings:
         # Type of registration: PASSWORD or EMAIL
         # PASSWORD = account is registered with a password supplied by the user;
         # EMAIL = password is generated and sent to the email provided by the user.
-        # More info at https://github.com/AuthMe/AuthMeReloaded/wiki/Registration
+        # More info at https://github.com/Yur1nn/NeoAuthMe/wiki/Registration
         type: PASSWORD
         # Second argument the /register command should take: NONE = no 2nd argument
         # CONFIRMATION = must repeat first argument (pass or email)
@@ -516,7 +516,7 @@ Security:
 # such as OP status, ability to fly, and walk/fly speed.
 # Once the user is logged in, we add back the properties we previously saved.
 # In this section, you may define how these properties should be handled.
-# Read more at https://github.com/AuthMe/AuthMeReloaded/wiki/Limbo-players
+# Read more at https://github.com/Yur1nn/NeoAuthMe/wiki/Limbo-players
 limbo:
     persistence:
         # Besides storing the data in memory, you can define if/how the data should be persisted
@@ -558,7 +558,7 @@ BackupSystem:
     OnServerStop: true
     # Windows only: MySQL installation path
     MysqlWindowsPath: C:\Program Files\MySQL\MySQL Server 5.1\
-# Converter settings: see https://github.com/AuthMe/AuthMeReloaded/wiki/Converters
+# Converter settings: see https://github.com/Yur1nn/NeoAuthMe/wiki/Converters
 Converter:
     Rakamak:
         # Rakamak file name
@@ -590,4 +590,4 @@ To change settings on a running server, save your changes to config.yml and use
 
 ---
 
-This page was automatically generated on the [AuthMe/AuthMeReloaded repository](https://github.com/AuthMe/AuthMeReloaded/tree/master/docs/) on Thu Jul 28 18:11:22 CEST 2022
+This page was automatically generated on the [Yur1nn/NeoAuthMe repository](https://github.com/Yur1nn/NeoAuthMe/tree/master/docs/) on Thu Jul 28 18:11:22 CEST 2022

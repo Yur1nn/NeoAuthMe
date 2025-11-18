@@ -1,16 +1,14 @@
-# NeoAuthMe 6.0.1
+# NeoAuthMe 6.0.2
 
 **The best authentication plugin for Paper 1.21.10+!**
 
 ## ⚠️ Important Notice
 
-**This version requires Paper 1.21.10 or later.** It does not support older Minecraft versions, Spigot, or Paper versions below 1.21.10. This plugin uses the Paper API and requires specific features only available in Paper 1.21.10+.
+**This version requires server software version 1.21.10 or later.** **Only Paper 1.21.10+ is guaranteed to work and receive support.** Other server software (Spigot, Bukkit, Folia, Purpur, and other Bukkit/Spigot-based forks) may work but are not officially supported and will not receive bug fixes or support for issues specific to those platforms.
 
 **⚠️ This plugin will NOT work on:**
-- Spigot
-- Bukkit
-- Paper versions below 1.21.10
-- Any other server software
+- Server software versions below 1.21.10
+- Forge, Fabric, or other mod loaders
 
 ## 📖 Description
 
@@ -61,11 +59,11 @@ NeoAuthMe disallows players who aren't authenticated to perform actions like pla
 ## 📋 Requirements
 
 - **Java 21+** (required)
-- **Paper 1.21.10 or later** (REQUIRED - will not work on older versions)
+- **Paper 1.21.10 or later** (REQUIRED - only officially supported platform)
 - **Minecraft 1.21.10+** (required)
 - ProtocolLib (optional, required for some features like inventory protection)
 
-**Note:** This plugin is specifically built for Paper 1.21.10+ and uses APIs that are not available in Spigot, Bukkit, or older Paper versions.
+**Note:** This plugin is officially supported only on Paper 1.21.10+. Other server software (Spigot, Bukkit, Folia, Purpur, and other Bukkit/Spigot-based forks) may work but are not guaranteed and will not receive support for platform-specific issues.
 
 ## 🔗 Links
 
@@ -83,6 +81,15 @@ NeoAuthMe disallows players who aren't authenticated to perform actions like pla
 3. Start your server (Paper 1.21.10+)
 4. Configure NeoAuthMe in `plugins/NeoAuthMe/config.yml`
 5. Players will need to register and login to play!
+
+## 📝 What's New in 6.0.2
+
+- ✅ **Eliminated Paper warning** - Removed `PlayerLoginEvent` listener (no more "HorriblePlayerLoginEventHack" warning)
+- ✅ **Improved performance** - Moved single session check to `AsyncPlayerPreLoginEvent`
+- ✅ **Code quality improvements** - Fixed 87+ deprecation warnings, 15+ unused imports, 10+ unchecked operations
+- ✅ **Removed VIP full server handling** - Use your preferred VIP plugin instead
+- ✅ **Better API compatibility** - Updated deprecated API usage throughout codebase
+- ✅ **Fixed resource leaks** - Improved test resource management
 
 ## 📝 What's New in 6.0.1
 

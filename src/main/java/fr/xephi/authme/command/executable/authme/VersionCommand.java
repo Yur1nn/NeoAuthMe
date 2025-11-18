@@ -37,7 +37,7 @@ public class VersionCommand implements ExecutableCommand {
         printDeveloper(sender, "DNx5", "DNx5", "Developer, Retired", onlinePlayers);
         printDeveloper(sender, "Tim Visee", "timvisee", "Developer, Retired", onlinePlayers);
         sender.sendMessage(ChatColor.GOLD + "Website: " + ChatColor.WHITE
-            + "https://github.com/AuthMe/AuthMeReloaded");
+            + "https://github.com/Yur1nn/NeoAuthMe");
         sender.sendMessage(ChatColor.GOLD + "License: " + ChatColor.WHITE + "GNU GPL v3.0"
             + ChatColor.GRAY + ChatColor.ITALIC + " (See LICENSE file)");
         sender.sendMessage(ChatColor.GOLD + "Copyright: " + ChatColor.WHITE

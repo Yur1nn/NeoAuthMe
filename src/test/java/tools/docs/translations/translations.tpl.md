@@ -8,7 +8,7 @@ in your config.yml to use the language, or use another language code to start a 
 Code | Language | Translated | &nbsp;
 ---- | -------- | ---------: | ------
 [#languages]
-[{code}](https://github.com/AuthMe/AuthMeReloaded/blob/master/src/main/resources/messages/messages_{code}.yml) | {name} | {percentage}% | <img src="https://via.placeholder.com/{percentage}x7/{color}?text=%20" alt="{percentage}" />
+[{code}](https://github.com/Yur1nn/NeoAuthMe/blob/master/src/main/resources/messages/messages_{code}.yml) | {name} | {percentage}% | <img src="https://via.placeholder.com/{percentage}x7/{color}?text=%20" alt="{percentage}" />
 [/#languages]
 
 {gen_footer}

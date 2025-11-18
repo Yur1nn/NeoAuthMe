@@ -46,7 +46,7 @@ DataSource:
     mySQLWebsite: false
 settings:
     # The name shown in the help messages.
-    helpHeader: AuthMeReloaded
+    helpHeader: NeoAuthMe
     sessions:
         # Do you want to enable the session feature?
         # If enabled, when a player authenticates successfully,

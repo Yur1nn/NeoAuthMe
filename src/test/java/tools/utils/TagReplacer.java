@@ -61,7 +61,7 @@ public final class TagReplacer {
             .replace("{gen_date}", curDate)
             .replace("{gen_warning}", "AUTO-GENERATED FILE! Do not edit this directly")
             .replace("{gen_footer}", "---\n\nThis page was automatically generated on the"
-                + " [AuthMe/AuthMeReloaded repository](" + ToolsConstants.DOCS_FOLDER_URL + ")"
+                + " [Yur1nn/NeoAuthMe repository](" + ToolsConstants.DOCS_FOLDER_URL + ")"
                 + " on " + curDate);
     }
 

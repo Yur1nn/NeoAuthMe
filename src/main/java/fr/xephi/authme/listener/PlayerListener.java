@@ -43,7 +43,6 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
@@ -147,33 +146,12 @@ public class PlayerListener implements Listener {
             onJoinVerifier.checkNameCasing(name, auth);
             final String ip = event.getAddress().getHostAddress();
             onJoinVerifier.checkPlayerCountry(name, ip, isAuthAvailable);
+            // Check for single session (moved from PlayerLoginEvent to avoid Paper warning)
+            onJoinVerifier.checkSingleSession(name);
         } catch (FailedVerificationException e) {
             event.setKickMessage(messages.retrieveSingle(name, e.getReason(), e.getArgs()));
             event.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
         }
-    }
-
-    // Note: We can't teleport the player in the PlayerLoginEvent listener
-    // as the new player location will be reverted by the server.
-
-    @EventHandler(priority = EventPriority.LOW)
-    public void onPlayerLogin(PlayerLoginEvent event) {
-        final Player player = event.getPlayer();
-        final String name = player.getName();
-
-        try {
-            onJoinVerifier.checkSingleSession(name);
-        } catch (FailedVerificationException e) {
-            event.setKickMessage(messages.retrieveSingle(name, e.getReason(), e.getArgs()));
-            event.setResult(PlayerLoginEvent.Result.KICK_OTHER);
-            return;
-        }
-
-        if (validationService.isUnrestricted(name)) {
-            return;
-        }
-
-        onJoinVerifier.refusePlayerForFullServer(event);
     }
 
     @EventHandler(priority = EventPriority.NORMAL)

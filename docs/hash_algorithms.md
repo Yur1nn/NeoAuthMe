@@ -80,4 +80,4 @@ or bad.
 
 ---
 
-This page was automatically generated on the [AuthMe/AuthMeReloaded repository](https://github.com/AuthMe/AuthMeReloaded/tree/master/docs/) on Sun Apr 04 21:31:44 CEST 2021
+This page was automatically generated on the [Yur1nn/NeoAuthMe repository](https://github.com/Yur1nn/NeoAuthMe/tree/master/docs/) on Sun Apr 04 21:31:44 CEST 2021
