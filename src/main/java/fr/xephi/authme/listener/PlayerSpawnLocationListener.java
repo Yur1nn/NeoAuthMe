@@ -9,7 +9,7 @@ public class PlayerSpawnLocationListener implements Listener {
 
     private static boolean wasSpawnLocationEventCalled = false;
 
-    public static boolean wasSpawnLocationEventCalled() {
+    public static boolean isSpawnLocationEventCalled() {
         return wasSpawnLocationEventCalled;
     }
 
