@@ -1,20 +1,14 @@
-# AuthMeReloaded
+# NeoAuthMe
 **"The best authentication plugin for the Bukkit modding API!"**
 
 <img src="wallpaper.png?raw=true" alt="AuthMeLogo"/>
-
-| Type              | Badges                                                                                                                                                                                                                                                                                                                                                                                |
-|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Code quality:** | [![Code Climate](https://codeclimate.com/github/AuthMe/AuthMeReloaded/badges/gpa.svg)](https://codeclimate.com/github/AuthMe/AuthMeReloaded) [![Coverage status](https://coveralls.io/repos/AuthMe-Team/AuthMeReloaded/badge.svg?branch=master&service=github)](https://coveralls.io/github/AuthMe-Team/AuthMeReloaded?branch=master)                                                 |
-| **Jenkins CI:**   | [![Jenkins Status](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=ci.codemc.org)](https://ci.codemc.org/) [![Build Status](https://ci.codemc.org/buildStatus/icon?job=AuthMe/AuthMeReloaded)](https://ci.codemc.org/job/AuthMe/job/AuthMeReloaded) ![Build Tests](https://img.shields.io/jenkins/t/https/ci.codemc.org/job/AuthMe/job/AuthMeReloaded.svg) |
-| **Other CIs:**    | [![Build Status](https://www.travis-ci.com/AuthMe/AuthMeReloaded.svg?branch=master)](https://www.travis-ci.com/AuthMe/AuthMeReloaded)                                                                                                                                                                                                                                                             |
 
 ## Description
 
 Prevent username stealing on your server!<br>
 Use it to secure your Offline mode server or to increase your Online mode server's protection!
 
-AuthMeReloaded disallows players who aren't authenticated to do actions like placing blocks, moving,<br>
+NeoAuthMe disallows players who aren't authenticated to do actions like placing blocks, moving,<br>
 typing commands or using the inventory. It can also kick players with uncommonly long or short player names or kick players from banned countries.
 
 With the Session Login feature you don't have to execute the authentication command every time you connect to the server! 
@@ -64,18 +58,18 @@ You can also create your own translation file and, if you want, you can share it
 </ul>
 
 #### Configuration
-[How to configure AuthMe](https://github.com/AuthMe/AuthMeReloaded/blob/master/docs/config.md)
+[How to configure AuthMe](https://github.com/Yur1nn/NeoAuthMe/blob/master/docs/config.md)
 #### Commands
-[Command list and usage](https://github.com/AuthMe/AuthMeReloaded/blob/master/docs/commands.md)
+[Command list and usage](https://github.com/Yur1nn/NeoAuthMe/blob/master/docs/commands.md)
 #### Permissions
 - authme.player.* - for all user commands
 - authme.admin.* - for all admin commands
-- [List of all permission nodes](http://github.com/AuthMe/AuthMeReloaded/blob/master/docs/permission_nodes.md)
+- [List of all permission nodes](http://github.com/Yur1nn/NeoAuthMe/blob/master/docs/permission_nodes.md)
 
 #### How To
-- [How to use the converter](https://github.com/AuthMe/AuthMeReloaded/wiki/Converters)
+- [How to use the converter](https://github.com/Yur1nn/NeoAuthMe/wiki/Converters)
 - [How to import database from xAuth](https://dev.bukkit.org/projects/authme-reloaded/pages/how-to-import-database-from-xauth)
-- [Website integration](https://github.com/AuthMe/AuthMeReloaded/tree/master/samples/website_integration)
+- [Website integration](https://github.com/Yur1nn/NeoAuthMe/tree/master/samples/website_integration)
 - [How to convert from Rakamak](https://dev.bukkit.org/projects/authme-reloaded/pages/how-to-import-database-from-rakamak)
 - Convert between database types (e.g. SQLite to MySQL): /authme converter
 
@@ -83,40 +77,14 @@ You can also create your own translation file and, if you want, you can share it
 ## Links and Contacts
 
  - **Support:**
-   - [GitHub issue tracker](https://github.com/AuthMe/AuthMeReloaded/issues)
-   - [Discord](https://discord.gg/Vn9eCyE)
-   - [BukkitDev page](https://dev.bukkit.org/projects/authme-reloaded)
-   - [Spigot page](https://www.spigotmc.org/resources/authmereloaded.6269/)
-
-- **Dev resources:**
-  - <a href="https://ci.codemc.org/job/AuthMe/job/AuthMeReloaded/javadoc/">JavaDocs</a>
-  - <a href="http://repo.codemc.org/repository/maven-public/">Maven Repository</a>
-  ```xml
-    <repositories>
-        <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
-        </repository>
-    </repositories>
-
-    <dependencies>
-        <dependency>
-            <groupId>fr.xephi</groupId>
-            <artifactId>authme</artifactId>
-            <version>5.6.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-  ```
-
-- **Statistics:**
-    ![Graph](https://bstats.org/signatures/bukkit/AuthMe.svg)
+   - [GitHub issue tracker](https://github.com/Yur1nn/NeoAuthMe/issues)
+   - [Discord](https://discord.gg/)
 
 ## Requirements
 
 ##### Compiling requirements:
->- JDK 17+
->- Maven (3.8.8+)
+>- JDK 21+
+>- Maven (3.9.6 is recommended, but anything above 3.8.x should work just fine)
 >- Git/GitHub (Optional)
 
 ##### How to compile the project:
@@ -124,18 +92,18 @@ You can also create your own translation file and, if you want, you can share it
 >- Execute command "mvn clean package"
 
 ##### Running requirements:
->- Java 17+
->- Paper or Spigot (1.16.5 and up)
+>- Java 21+
+>- Paper or Spigot (1.21.10 and up)
 >- ProtocolLib (optional, required by some features)
 
 ## Credits
 
 ##### Contributors:
-Team members: <a href="https://github.com/AuthMe/AuthMeReloaded/wiki/Development-team">developers</a>, <a href="https://github.com/AuthMe/AuthMeReloaded/wiki/Translators">translators</a>
+Team members: <a href="https://github.com/Yur1nn/NeoAuthMe/wiki/Development-team">developers</a>, <a href="https://github.com/Yur1nn/NeoAuthMe/wiki/Translators">translators</a>
 
-Credits for the old version of the plugin: d4rkwarriors, fabe1337, Whoami2 and pomo4ka
-
-Thanks also to: AS1LV3RN1NJA, Hoeze and eprimex
+AuthMe credits: d4rkwarriors, fabe1337, Whoami2 and pomo4ka
+AuthMeReloaded credits: AS1LV3RN1NJA, Hoeze and eprimex
+NeoAuthMe credits: Yur1nn
 
 ##### GeoIP License:
 This product uses data from the GeoLite API created by MaxMind, available at https://www.maxmind.com
