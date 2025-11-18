@@ -15,9 +15,9 @@ public class SetSpawnCommand extends PlayerCommand {
     @Override
     public void runCommand(Player player, List<String> arguments) {
         if (spawnLoader.setSpawn(player.getLocation())) {
-            player.sendMessage("[AuthMe] Correctly defined new spawn point");
+            player.sendMessage("[NeoAuthMe] Correctly defined new spawn point");
         } else {
-            player.sendMessage("[AuthMe] SetSpawn has failed, please retry");
+            player.sendMessage("[NeoAuthMe] SetSpawn has failed, please retry");
         }
     }
 }

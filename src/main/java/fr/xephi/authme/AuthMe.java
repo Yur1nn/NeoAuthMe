@@ -48,12 +48,12 @@ import static fr.xephi.authme.service.BukkitService.TICKS_PER_MINUTE;
 import static fr.xephi.authme.util.Utils.isClassLoaded;
 
 /**
- * The AuthMe main class.
+ * The NeoAuthMe main class.
  */
 public class AuthMe extends JavaPlugin {
 
     // Constants
-    private static final String PLUGIN_NAME = "AuthMeReloaded";
+    private static final String PLUGIN_NAME = "NeoAuthMe";
     private static final String LOG_FILENAME = "authme.log";
     private static final int CLEANUP_INTERVAL = 5 * TICKS_PER_MINUTE;
 
@@ -123,11 +123,11 @@ public class AuthMe extends JavaPlugin {
         ConsoleLogger.initialize(getLogger(), new File(getDataFolder(), LOG_FILENAME));
         logger = ConsoleLoggerFactory.get(AuthMe.class);
 
-        // Check server version
-        if (!isClassLoaded("org.spigotmc.event.player.PlayerSpawnLocationEvent")
+        // Check server version - NeoAuthMe 6.0.0+ requires Paper 1.21.10+
+        if (!isClassLoaded("io.papermc.paper.event.player.AsyncPlayerSpawnLocationEvent")
             || !isClassLoaded("org.bukkit.event.player.PlayerInteractAtEntityEvent")) {
             logger.warning("You are running an unsupported server version (" + getServerNameVersionSafe() + "). "
-                + "AuthMe requires Spigot 1.8.X or later!");
+                + "NeoAuthMe 6.0.0+ requires Paper 1.21.10 or later!");
             stopOrUnload();
             return;
         }
@@ -146,7 +146,7 @@ public class AuthMe extends JavaPlugin {
         } catch (Throwable th) {
             YamlParseException yamlParseException = ExceptionUtils.findThrowableInCause(YamlParseException.class, th);
             if (yamlParseException == null) {
-                logger.logException("Aborting initialization of AuthMe:", th);
+                logger.logException("Aborting initialization of NeoAuthMe:", th);
                 th.printStackTrace();
             } else {
                 logger.logException("File '" + yamlParseException.getFile() + "' contains invalid YAML. "
@@ -170,7 +170,7 @@ public class AuthMe extends JavaPlugin {
         OnStartupTasks.sendMetrics(this, settings);
 
         // Successful message
-        logger.info("AuthMe " + getPluginVersion() + " build n." + getPluginBuildNumber() + " successfully enabled!");
+        logger.info("NeoAuthMe " + getPluginVersion() + " build n." + getPluginBuildNumber() + " successfully enabled!");
 
         // Purge on start if enabled
         PurgeService purgeService = injector.getSingleton(PurgeService.class);
@@ -274,8 +274,8 @@ public class AuthMe extends JavaPlugin {
             pluginManager.registerEvents(injector.getSingleton(PlayerListener19.class), this);
         }
 
-        // Try to register 1.9 spigot player listeners
-        if (isClassLoaded("org.spigotmc.event.player.PlayerSpawnLocationEvent")) {
+        // Try to register 1.9 spigot/paper player listeners
+        if (isClassLoaded("io.papermc.paper.event.player.AsyncPlayerSpawnLocationEvent")) {
             pluginManager.registerEvents(injector.getSingleton(PlayerListener19Spigot.class), this);
         }
 
@@ -336,7 +336,7 @@ public class AuthMe extends JavaPlugin {
                              String commandLabel, String[] args) {
         // Make sure the command handler has been initialized
         if (commandHandler == null) {
-            getLogger().severe("AuthMe command handler is not available");
+            getLogger().severe("NeoAuthMe command handler is not available");
             return false;
         }
 

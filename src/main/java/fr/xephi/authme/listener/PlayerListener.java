@@ -180,9 +180,10 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
 
-        if (!PlayerListener19Spigot.isPlayerSpawnLocationEventCalled()) {
-            teleportationService.teleportOnJoin(player);
-        }
+        // In Paper 1.21.10+, AsyncPlayerSpawnLocationEvent is called but Player is not available
+        // So we always need to handle teleportation here (the async event can't set spawn location)
+        // The flag just indicates the async event was called, but doesn't mean spawn was set
+        teleportationService.teleportOnJoin(player);
 
         quickCommandsProtectionManager.processJoin(player);
 

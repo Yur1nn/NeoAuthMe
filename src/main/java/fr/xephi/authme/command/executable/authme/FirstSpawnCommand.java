@@ -18,7 +18,7 @@ public class FirstSpawnCommand extends PlayerCommand {
     @Override
     public void runCommand(Player player, List<String> arguments) {
         if (spawnLoader.getFirstSpawn() == null) {
-            player.sendMessage("[AuthMe] First spawn has failed, please try to define the first spawn");
+            player.sendMessage("[NeoAuthMe] First spawn has failed, please try to define the first spawn");
         } else {
             player.teleport(spawnLoader.getFirstSpawn());
         }

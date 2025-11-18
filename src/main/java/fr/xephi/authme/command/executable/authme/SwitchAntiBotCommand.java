@@ -29,7 +29,7 @@ public class SwitchAntiBotCommand implements ExecutableCommand {
     @Override
     public void executeCommand(final CommandSender sender, List<String> arguments) {
         if (arguments.isEmpty()) {
-            sender.sendMessage("[AuthMe] AntiBot status: " + antiBotService.getAntiBotStatus().name());
+            sender.sendMessage("[NeoAuthMe] AntiBot status: " + antiBotService.getAntiBotStatus().name());
             return;
         }
 
@@ -38,10 +38,10 @@ public class SwitchAntiBotCommand implements ExecutableCommand {
         // Enable or disable the mod
         if ("ON".equalsIgnoreCase(newState)) {
             antiBotService.overrideAntiBotStatus(true);
-            sender.sendMessage("[AuthMe] AntiBot Manual Override: enabled!");
+            sender.sendMessage("[NeoAuthMe] AntiBot Manual Override: enabled!");
         } else if ("OFF".equalsIgnoreCase(newState)) {
             antiBotService.overrideAntiBotStatus(false);
-            sender.sendMessage("[AuthMe] AntiBot Manual Override: disabled!");
+            sender.sendMessage("[NeoAuthMe] AntiBot Manual Override: disabled!");
         } else {
             sender.sendMessage(ChatColor.DARK_RED + "Invalid AntiBot mode!");
             FoundCommandResult result = commandMapper.mapPartsToCommand(sender, Arrays.asList("authme", "antibot"));

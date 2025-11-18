@@ -15,9 +15,9 @@ public class SetFirstSpawnCommand extends PlayerCommand {
     @Override
     public void runCommand(Player player, List<String> arguments) {
         if (spawnLoader.setFirstSpawn(player.getLocation())) {
-            player.sendMessage("[AuthMe] Correctly defined new first spawn point");
+            player.sendMessage("[NeoAuthMe] Correctly defined new first spawn point");
         } else {
-            player.sendMessage("[AuthMe] SetFirstSpawn has failed, please retry");
+            player.sendMessage("[NeoAuthMe] SetFirstSpawn has failed, please retry");
         }
     }
 }

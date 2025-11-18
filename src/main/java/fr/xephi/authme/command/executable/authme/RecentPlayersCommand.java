@@ -30,7 +30,7 @@ public class RecentPlayersCommand implements ExecutableCommand {
     public void executeCommand(CommandSender sender, List<String> arguments) {
         List<PlayerAuth> recentPlayers = dataSource.getRecentlyLoggedInPlayers();
 
-        sender.sendMessage(ChatColor.BLUE + "[AuthMe] Recently logged in players");
+        sender.sendMessage(ChatColor.BLUE + "[NeoAuthMe] Recently logged in players");
         for (PlayerAuth auth : recentPlayers) {
             sender.sendMessage(formatPlayerMessage(auth));
         }

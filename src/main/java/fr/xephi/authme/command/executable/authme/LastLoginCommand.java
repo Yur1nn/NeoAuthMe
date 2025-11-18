@@ -38,12 +38,12 @@ public class LastLoginCommand implements ExecutableCommand {
         final String lastLoginDate = lastLogin == null ? "never" : new Date(lastLogin).toString();
 
         // Show the player status
-        sender.sendMessage("[AuthMe] " + playerName + " last login: " + lastLoginDate);
+        sender.sendMessage("[NeoAuthMe] " + playerName + " last login: " + lastLoginDate);
         if (lastLogin != null) {
-            sender.sendMessage("[AuthMe] The player " + playerName + " last logged in "
+            sender.sendMessage("[NeoAuthMe] The player " + playerName + " last logged in "
                 + createLastLoginIntervalMessage(lastLogin) + " ago");
         }
-        sender.sendMessage("[AuthMe] Last player's IP: " + auth.getLastIp());
+        sender.sendMessage("[NeoAuthMe] Last player's IP: " + auth.getLastIp());
     }
 
     private static String createLastLoginIntervalMessage(long lastLogin) {

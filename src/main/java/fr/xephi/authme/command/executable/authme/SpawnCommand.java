@@ -15,7 +15,7 @@ public class SpawnCommand extends PlayerCommand {
     @Override
     public void runCommand(Player player, List<String> arguments) {
         if (spawnLoader.getSpawn() == null) {
-            player.sendMessage("[AuthMe] Spawn has failed, please try to define the spawn");
+            player.sendMessage("[NeoAuthMe] Spawn has failed, please try to define the spawn");
         } else {
             player.teleport(spawnLoader.getSpawn());
         }

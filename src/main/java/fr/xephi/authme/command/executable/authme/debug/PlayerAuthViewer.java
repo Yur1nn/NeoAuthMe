@@ -66,7 +66,7 @@ class PlayerAuthViewer implements DebugSection {
      * @param sender the sender to send the messages to
      */
     private void displayAuthToSender(PlayerAuth auth, CommandSender sender) {
-        sender.sendMessage(ChatColor.BLUE + "[AuthMe] Player " + auth.getNickname() + " / " + auth.getRealName());
+        sender.sendMessage(ChatColor.BLUE + "[NeoAuthMe] Player " + auth.getNickname() + " / " + auth.getRealName());
         sender.sendMessage("Email: " + auth.getEmail() + ". IP: " + auth.getLastIp() + ". Group: " + auth.getGroupId());
         sender.sendMessage("Quit location: "
             + formatLocation(auth.getQuitLocX(), auth.getQuitLocY(), auth.getQuitLocZ(), auth.getWorld()));

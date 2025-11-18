@@ -47,20 +47,20 @@ public class XAuthConverter implements Converter {
 
     private void convert(CommandSender sender) {
         if (pluginManager.getPlugin("xAuth") == null) {
-            sender.sendMessage("[AuthMe] xAuth plugin not found");
+            sender.sendMessage("[NeoAuthMe] xAuth plugin not found");
             return;
         }
         //TODO ljacqu 20160702: xAuthDb is not used except for the existence check -- is this intended?
         File xAuthDb = new File(dataFolder.getParent(), makePath("xAuth", "xAuth.h2.db"));
         if (!xAuthDb.exists()) {
-            sender.sendMessage("[AuthMe] xAuth H2 database not found, checking for MySQL or SQLite data...");
+            sender.sendMessage("[NeoAuthMe] xAuth H2 database not found, checking for MySQL or SQLite data...");
         }
         List<Integer> players = getXAuthPlayers();
         if (Utils.isCollectionEmpty(players)) {
-            sender.sendMessage("[AuthMe] Error while importing xAuthPlayers: did not find any players");
+            sender.sendMessage("[NeoAuthMe] Error while importing xAuthPlayers: did not find any players");
             return;
         }
-        sender.sendMessage("[AuthMe] Starting import...");
+        sender.sendMessage("[NeoAuthMe] Starting import...");
 
         for (int id : players) {
             String pl = getIdPlayer(id);
@@ -73,7 +73,7 @@ public class XAuthConverter implements Converter {
                 database.saveAuth(auth);
             }
         }
-        sender.sendMessage("[AuthMe] Successfully converted from xAuth database");
+        sender.sendMessage("[NeoAuthMe] Successfully converted from xAuth database");
     }
 
     private String getIdPlayer(int id) {

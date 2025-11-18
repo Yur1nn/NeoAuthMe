@@ -66,7 +66,7 @@ public class ConverterCommand implements ExecutableCommand {
         });
 
         // Show a status message
-        sender.sendMessage("[AuthMe] Successfully started " + arguments.get(0));
+        sender.sendMessage("[NeoAuthMe] Successfully started " + arguments.get(0));
     }
 
     private static Class<? extends Converter> getConverterClassFromArgs(List<String> arguments) {

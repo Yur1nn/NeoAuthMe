@@ -1,6 +1,8 @@
 # NeoAuthMe
 **"The best authentication plugin for the Bukkit modding API!"**
 
+> **⚠️ Version 6.0.0+ Notice:** This version requires **Paper 1.21.10 or later**. It does not support older Minecraft versions, Spigot, or Paper versions below 1.21.10. This is a major release that uses the new Paper API.
+
 <img src="wallpaper.png?raw=true" alt="AuthMeLogo"/>
 
 ## Description
@@ -84,7 +86,7 @@ You can also create your own translation file and, if you want, you can share it
 
 ##### Compiling requirements:
 >- JDK 21+
->- Maven (3.9.6 is recommended, but anything above 3.8.x should work just fine)
+>- Maven (3.9.11 is recommended, but anything above 3.8.x should work just fine)
 >- Git/GitHub (Optional)
 
 ##### How to compile the project:
@@ -93,7 +95,7 @@ You can also create your own translation file and, if you want, you can share it
 
 ##### Running requirements:
 >- Java 21+
->- Paper or Spigot (1.21.10 and up)
+>- **Paper 1.21.10 or later** (required - this version does not support older versions or Spigot)
 >- ProtocolLib (optional, required by some features)
 
 ## Credits

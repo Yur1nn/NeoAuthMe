@@ -49,6 +49,7 @@ body:
       options:
         - Standalone server (no proxy)
         - BungeeCord
+        - Velocity
     validations:
       required: true
 
@@ -65,8 +66,8 @@ body:
 
   - type: input
     attributes:
-      label: AuthMe Version
-      description: What version of AuthMe are you running? (`/authme version`)
+      label: NeoAuthMe Version
+      description: What version of NeoAuthMe are you running? (`/authme version`)
     validations:
       required: true
 

@@ -103,7 +103,7 @@ class PurgeTask extends BukkitRunnable {
         purgeService.executePurge(playerPortion, namePortion);
         if (currentPage % 20 == 0) {
             int completed = totalPurgeCount - toPurge.size();
-            sendMessage("[AuthMe] Purge progress " + completed + '/' + totalPurgeCount);
+            sendMessage("[NeoAuthMe] Purge progress " + completed + '/' + totalPurgeCount);
         }
     }
 
@@ -111,7 +111,7 @@ class PurgeTask extends BukkitRunnable {
         cancel();
 
         // Show a status message
-        sendMessage(ChatColor.GREEN + "[AuthMe] Database has been purged successfully");
+        sendMessage(ChatColor.GREEN + "[NeoAuthMe] Database has been purged successfully");
 
         logger.info("Purge finished!");
         purgeService.setPurging(false);

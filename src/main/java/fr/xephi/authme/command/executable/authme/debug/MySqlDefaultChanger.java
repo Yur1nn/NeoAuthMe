@@ -88,7 +88,7 @@ class MySqlDefaultChanger implements DebugSection {
         } else if (operation == null || column == null) {
             displayUsageHints(sender);
         } else {
-            sender.sendMessage(ChatColor.BLUE + "[AuthMe] MySQL change '" + column + "'");
+            sender.sendMessage(ChatColor.BLUE + "[NeoAuthMe] MySQL change '" + column + "'");
             try (Connection con = getConnection(mySql)) {
                 switch (operation) {
                     case ADD:

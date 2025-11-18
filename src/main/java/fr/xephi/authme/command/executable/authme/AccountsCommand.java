@@ -36,9 +36,9 @@ public class AccountsCommand implements ExecutableCommand {
             bukkitService.runTaskAsynchronously(() -> {
                 List<String> accountList = dataSource.getAllAuthsByIp(playerName);
                 if (accountList.isEmpty()) {
-                    sender.sendMessage("[AuthMe] This IP does not exist in the database.");
+                    sender.sendMessage("[NeoAuthMe] This IP does not exist in the database.");
                 } else if (accountList.size() == 1) {
-                    sender.sendMessage("[AuthMe] " + playerName + " is a single account player");
+                    sender.sendMessage("[NeoAuthMe] " + playerName + " is a single account player");
                 } else {
                     outputAccountsList(sender, playerName, accountList);
                 }
@@ -58,7 +58,7 @@ public class AccountsCommand implements ExecutableCommand {
                 if (accountList.isEmpty()) {
                     commonService.send(sender, MessageKey.UNKNOWN_USER);
                 } else if (accountList.size() == 1) {
-                    sender.sendMessage("[AuthMe] " + playerName + " is a single account player");
+                    sender.sendMessage("[NeoAuthMe] " + playerName + " is a single account player");
                 } else {
                     outputAccountsList(sender, playerName, accountList);
                 }
@@ -67,8 +67,8 @@ public class AccountsCommand implements ExecutableCommand {
     }
 
     private static void outputAccountsList(CommandSender sender, String playerName, List<String> accountList) {
-        sender.sendMessage("[AuthMe] " + playerName + " has " + accountList.size() + " accounts.");
-        String message = "[AuthMe] " + String.join(", ", accountList) + ".";
+        sender.sendMessage("[NeoAuthMe] " + playerName + " has " + accountList.size() + " accounts.");
+        String message = "[NeoAuthMe] " + String.join(", ", accountList) + ".";
         sender.sendMessage(message);
     }
 }

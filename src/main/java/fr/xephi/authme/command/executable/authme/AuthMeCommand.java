@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import java.util.List;
 
 /**
- * AuthMe base command; shows the version and some command pointers.
+ * NeoAuthMe base command; shows the version and some command pointers.
  */
 public class AuthMeCommand implements ExecutableCommand {
 
