@@ -13,8 +13,8 @@ public class PlayerListener19Spigot implements Listener {
         return isPlayerSpawnLocationEventCalled;
     }
 
-    // Note: the following event is called since MC1.9, in older versions we have to fallback on the PlayerJoinEvent
-    // In Paper 1.21.10+, this is AsyncPlayerSpawnLocationEvent and should only set spawn location, not teleport
+    // Paper 1.21.10+ uses AsyncPlayerSpawnLocationEvent for spawn location handling
+    // This event should only set spawn location, not teleport (Player object is not available)
     // Note: Player object is not available in async event (happens during configuration phase per Paper API)
     // Player-specific spawn logic will be handled in PlayerJoinEvent instead
     @EventHandler(priority = EventPriority.HIGH)

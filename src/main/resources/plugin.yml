@@ -7,7 +7,7 @@ description: ${project.description}
 # noinspection YAMLSchemaValidation
 main: ${pluginDescription.main}
 version: ${pluginDescription.version}
-api-version: 1.16
+api-version: 1.21
 softdepend:
     - Vault
     - LuckPerms
