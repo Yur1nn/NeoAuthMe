@@ -1,9 +1,9 @@
 package tools.docs.translations;
 
 import ch.jalu.configme.resource.PropertyReader;
-import ch.jalu.configme.resource.YamlFileReader;
 import fr.xephi.authme.message.MessageKey;
 import fr.xephi.authme.message.MessagePathHelper;
+import fr.xephi.authme.service.yaml.YamlFileResourceProvider;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class TranslationsGatherer {
     }
 
     private void processMessagesFile(String code, File file) {
-        PropertyReader reader = new YamlFileReader(file);
+        PropertyReader reader = YamlFileResourceProvider.loadFromFile(file).createReader();
         int availableMessages = 0;
         for (MessageKey key : MessageKey.values()) {
             if (reader.contains(key.getKey())) {
